@@ -2,9 +2,6 @@ from textwrap import wrap
 
 class AbstractDiscountFactory:
 
-    def __init__(self, stock_price):
-        self.stock_price = stock_price
-
     def build(self, product_subset):
         product_count = len(product_subset)
         price_before_discount = product_count * self.stock_price
@@ -17,9 +14,9 @@ class AProductDiscountFactory(AbstractDiscountFactory):
             '3A': 20
         }
     
-    def build(self, product_subset, **args):
+    def build(self, product_subset, **kwargs):
         product_count = len(product_subset)
-        price_before_discount = product_count * self.stock_price
+        price_before_discount = product_count * kwargs['product_price']
         chunk_product_subset = wrap(product_subset, 3)
 
         for chunk in chunk_product_subset:
@@ -30,11 +27,10 @@ class AProductDiscountFactory(AbstractDiscountFactory):
 
 class BProductDiscountFactory(AbstractDiscountFactory):
 
-    def __init__(self, stock_price):
+    def __init__(self):
         self.discounts = {
             '2B': 15
         }
-        self.stock_price = stock_price
     
     def build(self, product_subset, **kwargs):
         product_count = len(product_subset)
@@ -48,9 +44,6 @@ class BProductDiscountFactory(AbstractDiscountFactory):
         return price_before_discount
 
 class EProductDiscountFactory(AbstractDiscountFactory):
-
-    def __init__(self, stock_price):
-        self.stock_price = stock_price
     
     def build(self, product_subset, **kwargs):
         breakpoint()
@@ -62,3 +55,4 @@ class EProductDiscountFactory(AbstractDiscountFactory):
                 price_before_discount -= 0
             
         return price_before_discount
+
