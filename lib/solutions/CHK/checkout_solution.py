@@ -3,13 +3,7 @@ from itertools import groupby
 # noinspection PyUnusedLocal
 # skus = unicode string
 
-class DiscountFactory:
-
-    def build():
-        pass
-
-
-class AProductDiscountFactory(DiscountFactory):
+class AProductDiscountFactory:
 
     def __init__(self, stock_price):
         self.discounts = {
@@ -23,12 +17,19 @@ class AProductDiscountFactory(DiscountFactory):
         price_after_discount = 0
 
         if product_count % 3 == 0:
-            price_after_discount += self.discounts['3A']
+            price_after_discount -= self.discounts['3A']
 
-        return
+        return price_before_discount
 
-class InvalidInputException(Exception):
+class InvalidInputException:
     pass
+
+class ApplyDiscounts():
+
+    def load(skus_list):
+        for product in skus_list:
+
+        
 
 
 class TellerSystem:
@@ -36,6 +37,7 @@ class TellerSystem:
         self.stock = {
             'A': {
                 'price': 50,
+                'discount': AProductDiscountFactory
             },
             'B': {
                 'price': 30,
@@ -63,6 +65,7 @@ class TellerSystem:
         products = self.skus
         total_cost = 0
         for product in products:
+
             total_cost += len(product) * self.stock[product]['price']
 
 def checkout(skus):
@@ -74,6 +77,7 @@ def checkout(skus):
     return teller.calculate_price()
 
     
+
 
 
 
