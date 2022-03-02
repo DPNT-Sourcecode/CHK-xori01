@@ -17,9 +17,7 @@ class InvalidInputException(Exception):
 
 
 class TellerSystem:
-    def __init__(self, skus):
-
-
+    def __init__(self):
         self.stock = {
             'A': {
                 'price': 50,
@@ -34,8 +32,6 @@ class TellerSystem:
                 'price': 15,
             },
         }
-        sort_skus = ["".join(group) for _, group in groupby(sorted(skus))]
-        self.skus = sort_skus
 
     def load_in_skus(self, skus):
 
@@ -56,9 +52,12 @@ class TellerSystem:
 
 def checkout(skus):
     try:
-        teller = TellerSystem(skus=skus)
-    except 
+        teller = TellerSystem()
+        teller.load_in_skus(skus=skus)
+    except InvalidInputException:
+        return -1
     return teller.calculate_price()
 
     
+
 
