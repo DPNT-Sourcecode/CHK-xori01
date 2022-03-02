@@ -11,16 +11,19 @@ class AProductDiscountFactory(AbstractDiscountFactory):
 
     def __init__(self):
         self.discounts = {
-            '3A': 20
+            '3A': 20,
+            '5A': 50
         }
     
     def build(self, product_subset, **kwargs):
         product_count = len(product_subset)
         price_before_discount = product_count * kwargs['product_price']
-        chunk_product_subset = wrap(product_subset, )
+        chunk_product_subset = wrap(product_subset, 10)
 
         for chunk in chunk_product_subset:
-            if len(chunk) == 3:
+            if len(chunk) % 5 == 0:
+                price_before_discount -= self.discounts['5A']
+            elif len(chunk) % 3 == 0:
                 price_before_discount -= self.discounts['3A']
             
         return price_before_discount
@@ -55,5 +58,6 @@ class EProductDiscountFactory(AbstractDiscountFactory):
                 price_before_discount -= b_product_price
             
         return price_before_discount
+
 
 
