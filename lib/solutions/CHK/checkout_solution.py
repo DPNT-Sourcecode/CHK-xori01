@@ -26,10 +26,8 @@ class AProductDiscountFactory(AbstractDiscountFactory):
 
         return price_before_discount
 
-class InvalidInputException:
+class InvalidInputException(Exception):
     pass
-
-        
 
 
 class TellerSystem:
@@ -68,19 +66,22 @@ class TellerSystem:
         products_list = self.skus
         total_cost = 0
         for product_subset in products_list:
-            product_name = product_subset.first()
-            discount_factory = self.stock[product[0]]['discount']
-            total_cost += discount_factory.build(product)
+            product_name = product_subset[0]
+            discount_factory = self.stock[product_name]['discount']
+            total_cost += discount_factory.build(product_subset)
+
+        return total_cost
 
 def checkout(skus):
     try:
         teller = TellerSystem()
         teller.load_in_skus(skus=skus)
+        return teller.calculate_price()
     except InvalidInputException:
         return -1
-    return teller.calculate_price()
 
     
+
 
 
 
