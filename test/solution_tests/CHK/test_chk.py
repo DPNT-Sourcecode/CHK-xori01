@@ -14,7 +14,7 @@ def test_checkout_solution_sums_with_discounts():
     assert checkout_solution.checkout(skus) == 180
 
     skus = 'AAAAA'
-    assert checkout_solution.checkout(skus) == 230
+    assert checkout_solution.checkout(skus) == 200
 
     skus = 'AAAAAA'
     assert checkout_solution.checkout(skus) == 260
@@ -68,6 +68,7 @@ def test_invalid_input_responds_as_expected():
 
     skus = 'AzB'
     assert checkout_solution.checkout(skus) == -1
+
 
 
 
