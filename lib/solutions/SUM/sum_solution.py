@@ -35,8 +35,3 @@ def compute(x, y):
         logging.error("Only Integers can be passed into sum function")
         raise
 
-
-
-
-
-

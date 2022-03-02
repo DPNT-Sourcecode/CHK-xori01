@@ -21,7 +21,3 @@ class TestSum():
         with pytest.raises(InvalidTypeProvidedException):
             sum_solution.compute('100', '200')
 
-
-
-
-
