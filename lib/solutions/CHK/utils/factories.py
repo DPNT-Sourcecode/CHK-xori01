@@ -4,7 +4,7 @@ class AbstractDiscountFactory:
 
     def build(self, product_subset):
         product_count = len(product_subset)
-        price_before_discount = product_count * self.stock_price
+        price_before_discount = product_count * kwargs['product_price']
         return price_before_discount
 
 class AProductDiscountFactory(AbstractDiscountFactory):
@@ -34,7 +34,7 @@ class BProductDiscountFactory(AbstractDiscountFactory):
     
     def build(self, product_subset, **kwargs):
         product_count = len(product_subset)
-        price_before_discount = product_count * self.stock_price
+        price_before_discount = product_count * kwargs['product_price']
         chunk_product_subset = wrap(product_subset, 2)
 
         for chunk in chunk_product_subset:
@@ -46,13 +46,13 @@ class BProductDiscountFactory(AbstractDiscountFactory):
 class EProductDiscountFactory(AbstractDiscountFactory):
     
     def build(self, product_subset, **kwargs):
-        breakpoint()
         product_count = len(product_subset)
-        price_before_discount = product_count * self.stock_price
+        price_before_discount = product_count * kwargs['product_price']
         chunk_product_subset = wrap(product_subset, 2)
         for chunk in chunk_product_subset:
-            if len(chunk) == 2:
-                price_before_discount -= 0
+            if len(chunk) == 2 and 'B' in kwargs['product_list']:
+                b_product_price = kwargs['stock_list']['B']['price']
+                price_before_discount -= b_product_price
             
         return price_before_discount
 
