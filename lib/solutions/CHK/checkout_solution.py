@@ -88,6 +88,7 @@ class TellerSystem:
         for product_subset in products_list:
             product_name = product_subset[0]
             discount_factory = self.stock[product_name]['discount_loading_factor']
+            breakpoint()
             total_cost += discount_factory.build(product_subset)
 
         return total_cost
@@ -101,4 +102,5 @@ def checkout(skus):
         return -1
 
     
+
 
