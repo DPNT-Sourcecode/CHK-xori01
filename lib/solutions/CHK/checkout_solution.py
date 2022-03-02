@@ -22,11 +22,11 @@ class AProductDiscountFactory(AbstractDiscountFactory):
     def build(self, product_subset):
         product_count = len(product_subset)
         price_before_discount = product_count * self.stock_price
-        price_after_discount = 0
 
         if product_count % 3 == 0:
-            price_after_discount = price_before_discount - self.discounts['3A']
-            return price_after_discount
+            price_before_discount -= self.discounts['3A']
+            breakpoint()
+            return price_before_discount
 
         return price_before_discount
 
@@ -41,11 +41,10 @@ class BProductDiscountFactory(AbstractDiscountFactory):
     def build(self, product_subset):
         product_count = len(product_subset)
         price_before_discount = product_count * self.stock_price
-        price_after_discount = 0
 
         if product_count % 2 == 0:
-            price_after_discount = price_before_discount - self.discounts['2B']
-            return price_after_discount
+            price_before_discount -= self.discounts['2B']
+            return price_before_discount
 
         return price_before_discount
 
@@ -100,4 +99,5 @@ def checkout(skus):
         return -1
 
     
+
 
