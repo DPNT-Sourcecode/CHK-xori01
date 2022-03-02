@@ -1,6 +1,10 @@
 from itertools import groupby
 
-from .utils import factories
+from .utils.factories import (
+    AbstractDiscountFactory,
+    AProductDiscountFactory,
+    BProductDiscountFactory,
+)
 
 # noinspection PyUnusedLocal
 # skus = unicode string
