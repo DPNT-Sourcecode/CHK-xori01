@@ -60,7 +60,7 @@ class TellerSystem:
                 'discount_loading_factor': AProductDiscountFactory(50)
             },
             'B': {
-                'discount_loading_factor': AbstractDiscountFactory(30)
+                'discount_loading_factor': BProductDiscountFactory(30)
             },
             'C': {
                 'discount_loading_factor': AbstractDiscountFactory(20)
@@ -100,3 +100,4 @@ def checkout(skus):
         return -1
 
     
+
