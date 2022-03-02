@@ -1,4 +1,5 @@
 # noinspection PyShadowingBuiltins,PyUnusedLocal
+import logging
 
 class OutOfRangeException(Exception):
     pass
@@ -24,7 +25,16 @@ def validate_inputs(x, y):
 
 def compute(x, y):
     try:
-        validate_inputs
+        validate_inputs(x, y)
+
+        return x + y
+    except (OutOfRangeException, NegativeValuesException):
+        logging.error("Invalid input, does not confirm to postive and in-range values")
+        raise
+    except InvalidTypeProvidedException:
+        logging.error("Only Integers can be passed into sum function")
+        raise
+
 
 
 
