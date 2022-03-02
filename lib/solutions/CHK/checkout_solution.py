@@ -1,4 +1,5 @@
 from itertools import groupby
+from textwrap import wrap
 
 # noinspection PyUnusedLocal
 # skus = unicode string
@@ -26,11 +27,11 @@ class AProductDiscountFactory(AbstractDiscountFactory):
         product_count = len(product_subset)
         price_before_discount = product_count * self.stock_price
         discount_factor = self.discounts['3A']
+        discount_chunk = wrap(product_subset, discount_factor['count'])
 
-        discount_chunk = [product_subset[i:i+discount_factor['count']] for i in range(0, len(product_subset), discount_factor['count'])]
-
-        if len(discount_chunk) % 3 == 0:
-            price_before_discount -= self.discounts['3A']['discount_to_apply']
+        for chunk in discount_chunk:
+            if len(chunk) % 3 == 0:
+                price_before_discount -= self.discounts['3A']['discount_to_apply']
 
         breakpoint()
         return price_before_discount
@@ -104,6 +105,7 @@ def checkout(skus):
         return -1
 
     
+
 
 
 
