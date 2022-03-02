@@ -4,6 +4,7 @@ from .utils.factories import (
     AbstractDiscountFactory,
     AProductDiscountFactory,
     BProductDiscountFactory,
+    EProductDiscountFactory,
 )
 
 # noinspection PyUnusedLocal
@@ -31,7 +32,7 @@ class TellerSystem:
                 'discount_loading_factor': AbstractDiscountFactory(15)
             },
             'E': {
-                'discount_loading_factor': AbstractDiscountFactory(40)
+                'discount_loading_factor': EProductDiscountFactory(40)
             }
         }
 
@@ -65,7 +66,3 @@ def checkout(skus):
         return -1
 
     
-
-
-
-

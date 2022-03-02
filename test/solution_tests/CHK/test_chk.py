@@ -1,3 +1,4 @@
+from re import L
 import pytest
 
 from solutions.CHK import checkout_solution, InvalidInputException
@@ -58,6 +59,17 @@ def test_mixture_products():
     skus = 'ABCDCBAABCABBAAA'
     assert checkout_solution.checkout(skus) == 505
 
+def test_E_product_discounts():
+    skus = 'E'
+    assert checkout_solution.checkout(skus) == 40
+
+    skus = 'EE'
+    assert checkout_solution.checkout(skus) == 80
+
+    skus = 'EEB'
+    assert checkout_solution.checkout(skus) == 80
+
+
 
 def test_invalid_input_responds_as_expected():
     skus = 'LLLP'
@@ -68,11 +80,6 @@ def test_invalid_input_responds_as_expected():
 
     skus = 'AzB'
     assert checkout_solution.checkout(skus) == -1
-
-
-
-
-
 
 
 
