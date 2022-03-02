@@ -5,10 +5,11 @@ from itertools import groupby
 
 class AbstractDiscountFactory:
 
-    
+    def __init__(self, stock_price):
+        self.stock_price = stock_price
 
-    def build(*args, **kwargs):
-        return 0
+    def build(self, *args, **kwargs):
+        return self.stock_price
 
 class AProductDiscountFactory(AbstractDiscountFactory):
 
@@ -29,6 +30,25 @@ class AProductDiscountFactory(AbstractDiscountFactory):
 
         return price_before_discount
 
+class BProductDiscountFactory(AbstractDiscountFactory):
+
+    def __init__(self, stock_price):
+        self.discounts = {
+            '2B': 15
+        }
+        self.stock_price = stock_price
+    
+    def build(self, product_subset):
+        product_count = len(product_subset)
+        price_before_discount = product_count * self.stock_price
+        price_after_discount = 0
+
+        if product_count % 2 == 0:
+            price_after_discount = price_before_discount - self.discounts['2B']
+            return price_after_discount
+
+        return price_before_discount
+
 class InvalidInputException(Exception):
     pass
 
@@ -37,20 +57,16 @@ class TellerSystem:
     def __init__(self):
         self.stock = {
             'A': {
-                'price': 50,
-                'discount': AProductDiscountFactory(50)
+                'discount_loading_factor': AProductDiscountFactory(50)
             },
             'B': {
-                'price': 30,
-                'discount': AbstractDiscountFactory(30)
+                'discount_loading_factor': AbstractDiscountFactory(30)
             },
             'C': {
-                'price': 20,
-                'discount': AbstractDiscountFactory(20)
+                'discount_loading_factor': AbstractDiscountFactory(20)
             },
             'D': {
-                'price': 15,
-                'discount': AbstractDiscountFactory(15)
+                'discount_loading_factor': AbstractDiscountFactory(15)
             },
         }
 
@@ -70,7 +86,7 @@ class TellerSystem:
         total_cost = 0
         for product_subset in products_list:
             product_name = product_subset[0]
-            discount_factory = self.stock[product_name]['discount']
+            discount_factory = self.stock[product_name]['discount_loading_factor']
             total_cost += discount_factory.build(product_subset)
 
         return total_cost
@@ -84,12 +100,3 @@ def checkout(skus):
         return -1
 
     
-
-
-
-
-
-
-
-
-
