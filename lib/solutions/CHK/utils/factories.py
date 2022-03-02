@@ -21,6 +21,10 @@ class AProductDiscountFactory(AbstractDiscountFactory):
 
         chunk_product_subset = []
 
+        grab_5 = product_subset[:5]
+
+        if (lengrab_5
+
         if len(product_subset) >= 5:
             chunk_product_subset = wrap(product_subset, 5)
         else:
@@ -33,6 +37,7 @@ class AProductDiscountFactory(AbstractDiscountFactory):
                 price_before_discount -= self.discounts['3A']
             
         return price_before_discount
+
 
 class BProductDiscountFactory(AbstractDiscountFactory):
 
@@ -64,6 +69,7 @@ class EProductDiscountFactory(AbstractDiscountFactory):
                 price_before_discount -= b_product_price
             
         return price_before_discount
+
 
 
 
