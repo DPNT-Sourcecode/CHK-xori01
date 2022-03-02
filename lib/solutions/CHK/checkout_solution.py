@@ -11,16 +11,21 @@ class DiscountFactory:
 
 class AProductDiscountFactory(DiscountFactory):
 
-    def __init__(self):
+    def __init__(self, stock_price):
         self.discounts = {
-            '3A': 130
+            '3A': 20
         }
+        self.stock_price = stock_price
     
-    def build(product_subset, stock_price):
+    def build(self, product_subset):
         product_count = len(product_subset)
+        price_before_discount = product_count * self.stock_price
+        price_after_discount = 0
 
         if product_count % 3 == 0:
-            return self.discounts
+            price_after_discount += self.discounts['3A']
+
+        return
 
 class InvalidInputException(Exception):
     pass
@@ -69,6 +74,7 @@ def checkout(skus):
     return teller.calculate_price()
 
     
+
 
 
 
