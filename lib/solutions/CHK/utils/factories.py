@@ -34,20 +34,16 @@ class AProductDiscountFactory(AbstractDiscountFactory):
                 clone_product_subset = clone_product_subset[:-3]
             else:
                 chunks.append(list(chunk_target))
-                clone_product_subset = clone_product_subset[:-len()]
+                clone_product_subset = clone_product_subset[:-len(chunk_target)]
 
-        if product_count % 5 == 0:
-            flt = product_count / 5
-            price_before_discount -= (self.discounts['5A'] * flt)
-
-        else:
-            if len(product_subset[:5]) == 5:
+        for chunk in chunks:
+            list_count = len(chunk)
+            if list_count % 5 == 0:
                 price_before_discount -= self.discounts['5A']
-                tmp_string = tmp_string[:-5]
-            
-            if len(product_subset[:3]) == 3:
+            elif list_count % 3 == 0:
                 price_before_discount -= self.discounts['3A']
-                tmp_string = tmp_string[:-3]
+            else:
+                price_before_discount += list_count * 
             
         return price_before_discount
 
@@ -82,4 +78,5 @@ class EProductDiscountFactory(AbstractDiscountFactory):
                 price_before_discount -= b_product_price
             
         return price_before_discount
+
 
