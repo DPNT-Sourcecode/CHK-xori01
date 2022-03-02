@@ -19,7 +19,12 @@ class AProductDiscountFactory(AbstractDiscountFactory):
     def build(self, product_subset, **kwargs):
         product_count = len(product_subset)
         price_before_discount = product_count * kwargs['product_price']
-        tmp_string = deepcopy(product_subset)
+        clone_product_subset = deepcopy(product_subset)
+
+        chunks = []
+
+        while len(clone_product_subset) > 0:
+            chunk_target = 
 
         if product_count % 5 == 0:
             flt = product_count / 5
