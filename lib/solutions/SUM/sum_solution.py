@@ -14,7 +14,7 @@ def validate_inputs(x, y):
     if not isinstance(x, int) and not isinstance(y, int):
         raise InvalidTypeProvidedException('Invalid input detected')
 
-    if x < 0 and y < 0:
+    if x < 0 or y < 0:
         raise NegativeValuesException('Negative values are not allowed')
 
     if 0 <= x <= 100 and 0 <= y <= 100:
@@ -34,6 +34,7 @@ def compute(x, y):
     except InvalidTypeProvidedException:
         logging.error("Only Integers can be passed into sum function")
         raise
+
 
 
 
