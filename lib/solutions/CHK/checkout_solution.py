@@ -3,7 +3,12 @@ from itertools import groupby
 # noinspection PyUnusedLocal
 # skus = unicode string
 
-class AProductDiscountFactory:
+class AbstractDiscountFactory:
+
+    def build():
+        pass
+
+class AProductDiscountFactory(AbstractDiscountFactory):
 
     def __init__(self, stock_price):
         self.discounts = {
@@ -24,11 +29,6 @@ class AProductDiscountFactory:
 class InvalidInputException:
     pass
 
-class ApplyDiscounts():
-
-    def load(skus_list):
-        for product in skus_list:
-
         
 
 
@@ -37,16 +37,19 @@ class TellerSystem:
         self.stock = {
             'A': {
                 'price': 50,
-                'discount': AProductDiscountFactory
+                'discount': AProductDiscountFactory(50)
             },
             'B': {
                 'price': 30,
+                'discount': AbstractDiscountFactory()
             },
             'C': {
                 'price': 20,
+                'discount': AbstractDiscountFactory()
             },
             'D': {
                 'price': 15,
+                'discount': AbstractDiscountFactory()
             },
         }
 
@@ -62,11 +65,12 @@ class TellerSystem:
         self.skus = sort_skus
 
     def calculate_price(self):
-        products = self.skus
+        products_list = self.skus
         total_cost = 0
-        for product in products:
-
-            total_cost += len(product) * self.stock[product]['price']
+        for product_subset in products_list:
+            product_name = product_subset.first()
+            discount_factory = self.stock[product[0]]['discount']
+            total_cost += discount_factory.build(product)
 
 def checkout(skus):
     try:
@@ -77,6 +81,7 @@ def checkout(skus):
     return teller.calculate_price()
 
     
+
 
 
 
