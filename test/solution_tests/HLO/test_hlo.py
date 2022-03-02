@@ -5,4 +5,7 @@ def test_hello_world():
 
 def test_hello_requires_no_kwarg():
     assert hello_solution.hello() == 'Hello, World!'
-    assert hello_solution.hello('test') == 'Hello, World!'
+
+def test_hello_returns_friend_name_if_supplied():
+    assert hello_solution.hello() == 'Hello, World!'
+    assert hello_solution.hello('John') == 'Hello, John!'
