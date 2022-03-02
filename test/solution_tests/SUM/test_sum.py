@@ -1,6 +1,6 @@
 import pytest
 
-from solutions.SUM import sum_solution, OutOfRangeException, NegativeValuesException
+from solutions.SUM import sum_solution, OutOfRangeException, NegativeValuesException, InvalidTypeProvidedException
 
 
 class TestSum():
@@ -18,6 +18,9 @@ class TestSum():
             sum_solution.compute(200, 300)
 
     def test_should_not_allow_non_ints():
-        with pytest.raises()
+        with pytest.raises(InvalidTypeProvidedException):
+            sum_solution.compute('100', '200')
+
+
 
 

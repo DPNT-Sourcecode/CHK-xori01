@@ -6,9 +6,14 @@ class OutOfRangeException(Exception):
 class NegativeValuesException(Exception):
     pass
 
-def validate_inputs():
+class InvalidTypeProvidedException(Exception):
+    pass
+
+def validate_inputs(x, y):
+    if isinstance(x, int) and is
 
 def compute(x, y):
     
+
 
 
