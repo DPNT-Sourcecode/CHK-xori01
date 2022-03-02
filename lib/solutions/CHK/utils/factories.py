@@ -21,16 +21,20 @@ class AProductDiscountFactory(AbstractDiscountFactory):
         price_before_discount = product_count * kwargs['product_price']
         tmp_string = deepcopy(product_subset)
 
+        if product_count % 5 == 0:
+            flt = product_count / 5
+            price_before_discount -= (self.discounts['5A'] * flt)
+
+
         if len(product_subset[:5]) == 5:
             price_before_discount -= self.discounts['5A']
-            tmp_string[:-5]
+            tmp_string = tmp_string[:-5]
             breakpoint()
         
         if len(product_subset[:3]) == 3:
             price_before_discount -= self.discounts['3A']
-            tmp_string[:-3]
+            tmp_string = tmp_string[:-3]
             breakpoint()
-        breakpoint()       
             
         return price_before_discount
 
@@ -65,5 +69,6 @@ class EProductDiscountFactory(AbstractDiscountFactory):
                 price_before_discount -= b_product_price
             
         return price_before_discount
+
 
 
