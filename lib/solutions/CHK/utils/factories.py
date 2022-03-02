@@ -19,19 +19,13 @@ class AProductDiscountFactory(AbstractDiscountFactory):
         product_count = len(product_subset)
         price_before_discount = product_count * kwargs['product_price']
 
-        chunk_product_subset = []
-
         if len(product_subset[:5]) == 5:
-            chunk_product_subset = wrap(product_subset, 5)
-        elif len(product_subset[:3]) == 3:
-            chunk_product_subset = wrap(product_subset, 3)
-
-        breakpoint()            
-        for chunk in chunk_product_subset:
-            if len(chunk) % 5 == 0:
-                price_before_discount -= self.discounts['5A']
-            elif len(chunk) % 3 == 0:
-                price_before_discount -= self.discounts['3A']
+            price_before_discount -= self.discounts['5A']
+        
+        if len(product_subset[:3]) == 3:
+            breakpoint()
+            price_before_discount -= self.discounts['3A']
+        breakpoint()       
             
         return price_before_discount
 
