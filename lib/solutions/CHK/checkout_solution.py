@@ -23,13 +23,12 @@ class AProductDiscountFactory(AbstractDiscountFactory):
     def build(self, product_subset):
         product_count = len(product_subset)
         price_before_discount = product_count * self.stock_price
-         = wrap(product_subset, 3)
+        chunk_product_subset = wrap(product_subset, 3)
 
-
-        breakpoint()
-        if len(product_subset) % 3 == 0:
-            price_before_discount -= self.discounts['3A']
-
+        for chunk in chunk_product_subset:
+            if len(chunk) == 3:
+                price_before_discount -= self.discounts['3A']
+            
         return price_before_discount
 
 class BProductDiscountFactory(AbstractDiscountFactory):
@@ -43,10 +42,12 @@ class BProductDiscountFactory(AbstractDiscountFactory):
     def build(self, product_subset):
         product_count = len(product_subset)
         price_before_discount = product_count * self.stock_price
-        get_first_2 = product_subset[:3]
-        if len(get_first_2) % 2 == 0:
-            price_before_discount -= self.discounts['2B']
+        chunk_product_subset = wrap(product_subset, 2)
 
+        for chunk in chunk_product_subset:
+            if len(chunk) == 2:
+                price_before_discount -= self.discounts['2B']
+            
         return price_before_discount
 
 class InvalidInputException(Exception):
@@ -100,3 +101,4 @@ def checkout(skus):
         return -1
 
     
+
