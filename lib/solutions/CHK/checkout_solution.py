@@ -15,7 +15,10 @@ class AProductDiscountFactory(AbstractDiscountFactory):
 
     def __init__(self, stock_price):
         self.discounts = {
-            '3A': 20
+            '3A': {
+                'count': 3,
+                'discount_to_apply': 20
+            }
         }
         self.stock_price = stock_price
     
@@ -23,11 +26,12 @@ class AProductDiscountFactory(AbstractDiscountFactory):
         product_count = len(product_subset)
         price_before_discount = product_count * self.stock_price
 
+        line = [line[i:i+n] for i in range(0, len(line), n)]
+
         if product_count % 3 == 0:
             price_before_discount -= self.discounts['3A']
-            breakpoint()
-            return price_before_discount
 
+        breakpoint()
         return price_before_discount
 
 class BProductDiscountFactory(AbstractDiscountFactory):
@@ -99,5 +103,6 @@ def checkout(skus):
         return -1
 
     
+
 
 
