@@ -20,6 +20,24 @@ def test_checkout_solution_sums_with_discounts():
     skus = 'AAAAAA'
     assert checkout_solution.checkout(skus) == 260
 
+
+    skus = 'AAAAAAA'
+    assert checkout_solution.checkout(skus) == 260
+
+
+    skus = 'AAAAAAA' # 7
+    assert checkout_solution.checkout(skus) == 260
+
+
+    skus = 'AAAAAAAAA' # 8
+    assert checkout_solution.checkout(skus) == 260
+
+    skus = 'AAAAAAAAAA' # 9
+    assert checkout_solution.checkout(skus) == 260
+
+    skus = 'AAAAAAAAAAA' # 10
+    assert checkout_solution.checkout(skus) == 500
+
     skus = 'AAABB'
     expected_A_cost = 130
     expected_B_cost= 45
@@ -80,6 +98,7 @@ def test_invalid_input_responds_as_expected():
 
     skus = 'AzB'
     assert checkout_solution.checkout(skus) == -1
+
 
 
 
