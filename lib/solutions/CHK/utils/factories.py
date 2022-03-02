@@ -1,4 +1,5 @@
 from textwrap import wrap
+from copy import deepcopy
 
 class AbstractDiscountFactory:
 
@@ -18,13 +19,15 @@ class AProductDiscountFactory(AbstractDiscountFactory):
     def build(self, product_subset, **kwargs):
         product_count = len(product_subset)
         price_before_discount = product_count * kwargs['product_price']
+        tmp_string = deepcopy(product_subset)
 
         if len(product_subset[:5]) == 5:
             price_before_discount -= self.discounts['5A']
+            tmp_string[:-5]
         
         if len(product_subset[:3]) == 3:
-            breakpoint()
             price_before_discount -= self.discounts['3A']
+            tmp_string[:-3]
         breakpoint()       
             
         return price_before_discount
@@ -60,3 +63,4 @@ class EProductDiscountFactory(AbstractDiscountFactory):
                 price_before_discount -= b_product_price
             
         return price_before_discount
+
