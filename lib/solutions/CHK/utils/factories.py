@@ -12,13 +12,12 @@ class AbstractDiscountFactory:
 
 class AProductDiscountFactory(AbstractDiscountFactory):
 
-    def __init__(self, stock_price):
+    def __init__(self):
         self.discounts = {
             '3A': 20
         }
-        self.stock_price = stock_price
     
-    def build(self, product_subset, **kwargs):
+    def build(self, product_subset, **args):
         product_count = len(product_subset)
         price_before_discount = product_count * self.stock_price
         chunk_product_subset = wrap(product_subset, 3)
@@ -53,7 +52,7 @@ class EProductDiscountFactory(AbstractDiscountFactory):
     def __init__(self, stock_price):
         self.stock_price = stock_price
     
-    def build(self, product_subset, **kwags):
+    def build(self, product_subset, **kwargs):
         breakpoint()
         product_count = len(product_subset)
         price_before_discount = product_count * self.stock_price

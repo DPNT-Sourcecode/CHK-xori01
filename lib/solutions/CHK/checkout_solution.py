@@ -20,12 +20,15 @@ class TellerSystem:
     def __init__(self):
         self.stock = {
             'A': {
-                'discount_loading_factor': AProductDiscountFactory(50)
+                'price': 50,
+                'discount_loading_factor': AProductDiscountFactory()
             },
             'B': {
-                'discount_loading_factor': BProductDiscountFactory(30)
+                'price': 30,
+                'discount_loading_factor': BProductDiscountFactory()
             },
             'C': {
+                'price': 30
                 'discount_loading_factor': AbstractDiscountFactory(20)
             },
             'D': {
@@ -53,7 +56,7 @@ class TellerSystem:
         for product_subset in products_list:
             product_name = product_subset[0]
             discount_factory = self.stock[product_name]['discount_loading_factor']
-            total_cost += discount_factory.build(product_subset)
+            total_cost += discount_factory.build(product_subset, stock_list=self.stock)
 
         return total_cost
 
@@ -66,3 +69,4 @@ def checkout(skus):
         return -1
 
     
+
