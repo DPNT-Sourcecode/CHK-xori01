@@ -9,8 +9,10 @@ class AbstractDiscountFactory:
     def __init__(self, stock_price):
         self.stock_price = stock_price
 
-    def build(self, *args, **kwargs):
-        return self.stock_price
+    def build(self, product_subset):
+        product_count = len(product_subset)
+        price_before_discount = product_count * self.stock_price
+        return price_before_discount
 
 class AProductDiscountFactory(AbstractDiscountFactory):
 
@@ -88,7 +90,6 @@ class TellerSystem:
         for product_subset in products_list:
             product_name = product_subset[0]
             discount_factory = self.stock[product_name]['discount_loading_factor']
-            breakpoint()
             total_cost += discount_factory.build(product_subset)
 
         return total_cost
@@ -102,5 +103,6 @@ def checkout(skus):
         return -1
 
     
+
 
 
