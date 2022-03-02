@@ -61,5 +61,3 @@ def checkout(skus):
         return teller.calculate_price()
     except InvalidInputException:
         return -1
-
-

@@ -66,10 +66,3 @@ class EProductDiscountFactory(AbstractDiscountFactory):
                 price_before_discount -= b_product_price
             
         return price_before_discount
-
-
-
-
-
-
-
