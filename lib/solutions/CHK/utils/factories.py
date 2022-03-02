@@ -24,7 +24,17 @@ class AProductDiscountFactory(AbstractDiscountFactory):
         chunks = []
 
         while len(clone_product_subset) > 0:
-            chunk_target = 
+            chunk_target = clone_product_subset[:5]
+
+            if len(chunk_target) == 5:
+                chunks.append(list(chunk_target))
+                clone_product_subset = clone_product_subset[:-5]
+            elif len(chunk_target) > 2 and len(chunk_target) < 5:
+                chunks.append(list(clone_product_subset[:3]))
+                clone_product_subset = clone_product_subset[:-3]
+            else:
+                chunks.append(list(chunk_target))
+                clone_product_subset = clone_product_subset[:-len()]
 
         if product_count % 5 == 0:
             flt = product_count / 5
@@ -72,3 +82,4 @@ class EProductDiscountFactory(AbstractDiscountFactory):
                 price_before_discount -= b_product_price
             
         return price_before_discount
+
