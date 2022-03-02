@@ -30,4 +30,3 @@ def test_checkout_solution_sums_with_discounts():
 
 
 
-
