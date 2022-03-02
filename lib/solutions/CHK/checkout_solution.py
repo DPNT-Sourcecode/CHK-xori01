@@ -5,8 +5,10 @@ from itertools import groupby
 
 class AbstractDiscountFactory:
 
-    def build():
-        pass
+    
+
+    def build(*args, **kwargs):
+        return 0
 
 class AProductDiscountFactory(AbstractDiscountFactory):
 
@@ -22,8 +24,7 @@ class AProductDiscountFactory(AbstractDiscountFactory):
         price_after_discount = 0
 
         if product_count % 3 == 0:
-            price_before_discount -= self.discounts['3A']
-            breakpoint()
+            price_after_discount = price_before_discount - self.discounts['3A']
             return price_after_discount
 
         return price_before_discount
@@ -41,15 +42,15 @@ class TellerSystem:
             },
             'B': {
                 'price': 30,
-                'discount': AbstractDiscountFactory()
+                'discount': AbstractDiscountFactory(30)
             },
             'C': {
                 'price': 20,
-                'discount': AbstractDiscountFactory()
+                'discount': AbstractDiscountFactory(20)
             },
             'D': {
                 'price': 15,
-                'discount': AbstractDiscountFactory()
+                'discount': AbstractDiscountFactory(15)
             },
         }
 
@@ -83,6 +84,7 @@ def checkout(skus):
         return -1
 
     
+
 
 
 
