@@ -17,8 +17,7 @@ class AProductDiscountFactory(AbstractDiscountFactory):
         }
     
     def build(self, product_subset, **kwargs):
-        product_count = len(product_subset)
-        price_before_discount = product_count * kwargs['product_price']
+        price_before_discount = 0
         clone_product_subset = deepcopy(product_subset)
 
         chunks = []
@@ -38,12 +37,13 @@ class AProductDiscountFactory(AbstractDiscountFactory):
 
         for chunk in chunks:
             list_count = len(chunk)
+            before_discount = list_count * kwargs['product_price']
             if list_count % 5 == 0:
-                price_before_discount -= self.discounts['5A']
+                price_before_discount += before_discount - self.discounts['5A']
             elif list_count % 3 == 0:
-                price_before_discount -= self.discounts['3A']
+                price_before_discount += before_discount - self.discounts['3A']
             else:
-                price_before_discount += list_count * 
+                price_before_discount += before_discount
             
         return price_before_discount
 
@@ -78,5 +78,6 @@ class EProductDiscountFactory(AbstractDiscountFactory):
                 price_before_discount -= b_product_price
             
         return price_before_discount
+
 
 
