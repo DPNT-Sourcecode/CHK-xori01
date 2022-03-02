@@ -28,16 +28,14 @@ def test_checkout_solution_sums_with_discounts():
 
 def test_invalid_input_responds_as_expected():
     skus = 'LLLP'
-    with pytest.raises(InvalidInputException):
-        checkout_solution.checkout(skus)
+    assert checkout_solution.checkout(skus) == -1
 
     skus = '12384'
-    with pytest.raises(InvalidInputException):
-        checkout_solution.checkout(skus)
+    assert checkout_solution.checkout(skus) == -1
 
     skus = 'AzB'
-    with pytest.raises(InvalidInputException):
-        checkout_solution.checkout(skus)
+    assert checkout_solution.checkout(skus) == -1
+
 
 
 
