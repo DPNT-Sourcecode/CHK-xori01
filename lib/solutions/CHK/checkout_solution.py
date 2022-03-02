@@ -24,13 +24,17 @@ class AProductDiscountFactory(AbstractDiscountFactory):
         self.stock_price = stock_price
     
     def build(self, product_subset):
+        max_count = 5
         product_count = len(product_subset)
         price_before_discount = product_count * self.stock_price
         discount_factor = self.discounts['3A']
+
+        if 
         discount_chunk = wrap(product_subset, discount_factor['count'])
 
         for chunk in discount_chunk:
-            if len(chunk) % 3 == 0:
+            amount
+            if len(chunk) % 3 == 0 a:
                 price_before_discount -= self.discounts['3A']['discount_to_apply']
 
         breakpoint()
@@ -105,6 +109,7 @@ def checkout(skus):
         return -1
 
     
+
 
 
 
