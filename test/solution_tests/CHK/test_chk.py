@@ -44,7 +44,7 @@ def test_B_product_discounts():
 
 def test_mixture_products():
     skus = 'AAABBAAA'
-    assert checkout_solution.checkout(skus) == 295
+    assert checkout_solution.checkout(skus) == 305
 
     skus = 'AABBCD'
     assert checkout_solution.checkout(skus) == 180
@@ -59,6 +59,7 @@ def test_invalid_input_responds_as_expected():
 
     skus = 'AzB'
     assert checkout_solution.checkout(skus) == -1
+
 
 
 
