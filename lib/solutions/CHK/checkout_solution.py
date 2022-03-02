@@ -22,7 +22,9 @@ class AProductDiscountFactory(AbstractDiscountFactory):
         price_after_discount = 0
 
         if product_count % 3 == 0:
-            price_after_discount -= self.discounts['3A']
+            price_before_discount -= self.discounts['3A']
+            breakpoint()
+            return price_after_discount
 
         return price_before_discount
 
@@ -81,6 +83,7 @@ def checkout(skus):
         return -1
 
     
+
 
 
 
