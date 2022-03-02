@@ -1,4 +1,4 @@
-
+from itertools import groupby
 
 # noinspection PyUnusedLocal
 # skus = unicode string
@@ -15,7 +15,7 @@ class AProductDiscountFactory(DiscountFactory):
 
 class TellerSystem:
     def __init__(self, skus):
-        self.skus = skus
+
 
         self.stock = {
             'A': {
@@ -31,9 +31,17 @@ class TellerSystem:
                 'price': 15,
             },
         }
+        sort_skus = ["".join(group) for _, group in groupby(sorted(skus)]
+        self.skus = skus
+
+    def calculate_price(self):
+        
 
 
 def checkout(skus):
     teller = TellerSystem(skus=skus)
+
+    
+
 
 
