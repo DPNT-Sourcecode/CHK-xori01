@@ -33,8 +33,8 @@ DISCOUNT_LIST = {
         'discount': PRODUCT_STOCK_PRICES['B'],
         "loading_factor": CrossProductDiscountFactor(cross_product_name='B'),
         'rules': {
-            'min': 3,
-            'max': 4,
+            'min': 2,
+            'max': 2,
         }
     },
 }

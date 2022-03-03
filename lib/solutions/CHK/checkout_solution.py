@@ -1,7 +1,5 @@
 from itertools import groupby
 
-from lib.solutions.CHK.loading_factors.discount_loading_factors import CrossProductDiscountFactor
-
 from .utils.factories import ProductDiscountFactorFactory
 from .constants import PRODUCT_STOCK_PRICES
 
@@ -14,7 +12,7 @@ class DiscountHandler():
         self.discount_factories = {
             'A': ProductDiscountFactorFactory(['5A', '3A']),
             'B': ProductDiscountFactorFactory(['2B']),
-            'E': CrossProductDiscountFactor(['2E']),
+            'E': ProductDiscountFactorFactory(['2E']),
         }
 
     def apply(self, product_name, **kwargs):
@@ -56,9 +54,7 @@ def checkout(skus):
                 price_after_discount -= amount
 
             final_price += price_after_discount
+        return final_price
                     
     except InvalidInputException:
         return -1
-
-
-
