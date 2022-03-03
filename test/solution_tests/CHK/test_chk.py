@@ -1,6 +1,3 @@
-from re import L
-import pytest
-
 from solutions.CHK import checkout_solution, InvalidInputException
 
 def test_checkout_solution_sums_without_discount():
@@ -73,14 +70,14 @@ def test_mixture_products():
     assert checkout_solution.checkout(skus) == 495
 
 def test_E_product_discounts():
-    # skus = 'E'
-    # assert checkout_solution.checkout(skus) == 40
+    skus = 'E'
+    assert checkout_solution.checkout(skus) == 40
 
-    # skus = 'EE'
-    # assert checkout_solution.checkout(skus) == 80
+    skus = 'EE'
+    assert checkout_solution.checkout(skus) == 80
 
-    # skus = 'EEB'
-    # assert checkout_solution.checkout(skus) == 80
+    skus = 'EEB'
+    assert checkout_solution.checkout(skus) == 80
 
     skus = 'EEEEBB'
     assert checkout_solution.checkout(skus) == 160
