@@ -1,6 +1,43 @@
 from copy import deepcopy
 
-from ..checkout_solution import DISCOUNT_LIST
+from ..loading_factors.discount_loading_factors import (ProductDiscountFactor, CrossProductDiscountFactor)
+from ..constants import PRODUCT_STOCK_PRICES
+
+
+DISCOUNT_LIST = {
+    '3A': {
+        'discount': 20,
+        "loading_factor": ProductDiscountFactor(),
+        'rules': {
+            'min': 3,
+            'max': 4,
+        }
+    },
+    '5A': {
+        'discount': 50,
+        "loading_factor": ProductDiscountFactor(),
+        'rules': {
+            'min': 5,
+            'max': 5,
+        }
+    },
+    '2A': {
+        'discount': 15,
+        "loading_factor": ProductDiscountFactor(),
+        'rules': {
+            'min': 2,
+            'max': 2,
+        }
+    },
+    '2E': {
+        'discount': PRODUCT_STOCK_PRICES['B'],
+        "loading_factor": CrossProductDiscountFactor(cross_product_name='B'),
+        'rules': {
+            'min': 3,
+            'max': 4,
+        }
+    },
+}
 
 class ProductDiscountFactorFactory:
 

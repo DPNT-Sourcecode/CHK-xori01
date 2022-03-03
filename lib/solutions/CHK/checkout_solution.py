@@ -1,54 +1,12 @@
 from itertools import groupby
 
-from .utils.factories import ProductDiscountFactorFactory
+from lib.solutions.CHK.loading_factors.discount_loading_factors import CrossProductDiscountFactor
 
-from .loading_factors.discount_loading_factors import (ProductDiscountFactor, CrossProductDiscountFactor)
+from .utils.factories import ProductDiscountFactorFactory
+from .constants import PRODUCT_STOCK_PRICES
 
 # noinspection PyUnusedLocal
 # skus = unicode string
-
-PRODUCT_STOCK_PRICES = {
-    'A': 50,
-    'B': 30,
-    'C': 20,
-    'D': 15,
-    'E': 40,
-}
-
-DISCOUNT_LIST = {
-    '3A': {
-        'discount': 20,
-        "loading_factor": ProductDiscountFactor(),
-        'rules': {
-            'min': 3,
-            'max': 4,
-        }
-    },
-    '5A': {
-        'discount': 50,
-        "loading_factor": ProductDiscountFactor(),
-        'rules': {
-            'min': 5,
-            'max': 5,
-        }
-    },
-    '2A': {
-        'discount': 15,
-        "loading_factor": ProductDiscountFactor(),
-        'rules': {
-            'min': 2,
-            'max': 2,
-        }
-    },
-    '2E': {
-        'discount': PRODUCT_STOCK_PRICES['B'],
-        "loading_factor": CrossProductDiscountFactor(cross_product_name='B'),
-        'rules': {
-            'min': 3,
-            'max': 4,
-        }
-    },
-}
 
 class DiscountHandler():
     
@@ -56,7 +14,7 @@ class DiscountHandler():
         self.discount_factories = {
             'A': ProductDiscountFactorFactory(['5A', '3A']),
             'B': ProductDiscountFactorFactory(['2B']),
-            'E': ProductDiscountFactorFactory(['2E']),
+            'E': CrossProductDiscountFactor(['2E']),
         }
 
     def apply(self, product_name, **kwargs):
@@ -101,5 +59,6 @@ def checkout(skus):
                     
     except InvalidInputException:
         return -1
+
 
 

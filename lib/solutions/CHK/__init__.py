@@ -1,1 +1,1 @@
-from .checkout_solution import InvalidInputException
+from .checkout_solution import InvalidInputException, PRODUCT_STOCK_PRICES
