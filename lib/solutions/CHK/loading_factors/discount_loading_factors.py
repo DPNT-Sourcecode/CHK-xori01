@@ -10,9 +10,8 @@ class CrossProductDiscountFactor:
 
     product_subset = []
 
-    def __init__(self, cross_product_name, disable_cross_product_discount=False):
+    def __init__(self, cross_product_name):
         self.cross_product_name = cross_product_name
-        self.disable_cross_product_discount = disable_cross_product_discount
 
     def should_apply_discount(
         self,
@@ -24,10 +23,8 @@ class CrossProductDiscountFactor:
         return bool(
             len(self.product_subset) >= min
             and len(self.product_subset) <= max
-            and (
-                any(self.cross_product_name in word for word in skus_full_list)
-                or not self.disable_cross_product_discount
-            )
+            and any(self.cross_product_name in word for word in skus_full_list)
         )
+
 
 
