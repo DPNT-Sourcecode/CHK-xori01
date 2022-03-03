@@ -73,11 +73,9 @@ class EProductDiscountFactory(AbstractDiscountFactory):
         price_before_discount = product_count * kwargs['product_price']
         chunk_product_subset = wrap(product_subset, 2)
         for chunk in chunk_product_subset:
-            if len(chunk) == 2 and 'B' in kwargs['product_list']:
+            if len(chunk) == 2 and any('B' in word for word in kwargs['product_list']):
+                breakpoint()
                 b_product_price = kwargs['stock_list']['B']['price']
                 price_before_discount -= b_product_price
             
         return price_before_discount
-
-
-

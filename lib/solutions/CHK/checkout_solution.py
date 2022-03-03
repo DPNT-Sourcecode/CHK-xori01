@@ -40,6 +40,7 @@ class TellerSystem:
     def calculate_price(self):
         products_list = self.skus
         total_cost = 0
+        final_price = 0
         for product_subset in products_list:
             product_name = product_subset[0]
             product_price = self.stock[product_name]["price"]
