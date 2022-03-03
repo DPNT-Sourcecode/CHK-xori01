@@ -41,19 +41,11 @@ def checkout(skus):
         final_price = 0
         sort_skus = ["".join(group) for _, group in groupby(sorted(skus))]
 
-        price_before_discount_new = 0
-
-        for sku_subset in sort_skus:
-            product_name_new = sku_subset[0]
-            product_price_new = PRODUCT_STOCK_PRICES[product_name_new]
-            price_before_discount_new += len(sku_subset) * product_price_new
-            breakpoint()
-
-        breakpoint()
+        price_before_discount = 0
 
         for sku_subset in sort_skus:
             product_name = sku_subset[0]
-            product_price = PRODUCT_STOCK_PRICES[product_name_new]
+            product_price = PRODUCT_STOCK_PRICES[product_name]
             price_before_discount = len(sku_subset) * product_price
             price_after_discount = price_before_discount
             discounts = DiscountHandler().apply(product_name, sku_subset=sku_subset, skus_full_list=sort_skus)
@@ -68,5 +60,6 @@ def checkout(skus):
                     
     except InvalidInputException:
         return -1
+
 
 
