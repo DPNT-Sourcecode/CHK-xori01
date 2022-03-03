@@ -1,11 +1,6 @@
 from itertools import groupby
 
-from .utils.factories import (
-    AbstractDiscountFactory,
-    AProductDiscountFactory,
-    BProductDiscountFactory,
-    EProductDiscountFactory,
-)
+from .utils.factories import ProductDiscountFactorFactory
 
 from .loading_factors.discount_loading_factors import (ProductDiscountFactor, CrossProductDiscountFactor)
 
@@ -33,20 +28,20 @@ DISCOUNT_LIST = {
         'discount': 50,
         "loading_factor": ProductDiscountFactor(),
         'rules': {
-            'min': 3,
-            'max': 4,
+            'min': 5,
+            'max': 5,
         }
     },
     '2A': {
-        'discount': 20,
+        'discount': 15,
         "loading_factor": ProductDiscountFactor(),
         'rules': {
-            'min': 3,
-            'max': 4,
+            'min': 2,
+            'max': 2,
         }
     },
     '2E': {
-        'discount': 20,
+        'discount': PRODUCT_STOCK_PRICES['B'],
         "loading_factor": CrossProductDiscountFactor(cross_product_name='B'),
         'rules': {
             'min': 3,
@@ -54,6 +49,18 @@ DISCOUNT_LIST = {
         }
     },
 }
+
+class DiscountHandler():
+    
+    def __init__(self):
+        self.discount_factories = {
+            'A': ProductDiscountFactorFactory()
+        }
+
+    def apply(self, product_name, **kwargs):
+        discounts = self.discount_factories[product_name].build(
+            
+        )
 
 
 class InvalidInputException(Exception):
