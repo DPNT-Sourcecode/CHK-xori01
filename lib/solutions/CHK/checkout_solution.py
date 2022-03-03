@@ -54,11 +54,20 @@ class DiscountHandler():
     
     def __init__(self):
         self.discount_factories = {
-            'A': ProductDiscountFactorFactory()
+            'A': ProductDiscountFactorFactory(['5A', '3A']),
+            'B': ProductDiscountFactorFactory(['2B']),
+            'E': ProductDiscountFactorFactory(['2E']),
         }
 
     def apply(self, product_name, **kwargs):
-        discounts = self.discount_factories[product_name].build()
+        try:
+            discounts = self.discount_factories[product_name].build(
+                product_subset=kwargs['sku_subset'],
+                skus_full_list=kwargs['skus_full_list'],
+            )
+            return discounts
+        except KeyError:
+            return []
 
 
 class InvalidInputException(Exception):
