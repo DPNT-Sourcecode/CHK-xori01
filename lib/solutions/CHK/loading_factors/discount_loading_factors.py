@@ -26,7 +26,8 @@ class CrossProductDiscountFactor:
             and len(self.product_subset) <= max
             and (
                 any(self.cross_product_name in word for word in skus_full_list)
-                and not self.disable_cross_product_discount
+                or not self.disable_cross_product_discount
             )
         )
+
 
