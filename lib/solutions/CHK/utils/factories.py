@@ -21,7 +21,7 @@ DISCOUNT_LIST = {
             'max': 5,
         }
     },
-    '2A': {
+    '2B': {
         'discount': 15,
         "loading_factor": ProductDiscountFactor(),
         'rules': {
