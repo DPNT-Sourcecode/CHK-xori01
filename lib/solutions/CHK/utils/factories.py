@@ -19,7 +19,21 @@ class ProductDiscountFactorFactory:
                 selected_discount_attributes = DISCOUNT_LIST[discount]
                 min = selected_discount_attributes['rules']['min']
                 max = selected_discount_attributes['rules']['max']
-                desired_chunk_size = 
+                desired_chunk_size = clone_product_subset[:max]
                 loading_factor = selected_discount_attributes['loading_factor']
+                loading_factor.product_subset = desired_chunk_size
 
-        pass
+                discount_enabled = loading_factor.should_apply_discount(
+                    min=min, max=max, skus_full_list=skus_full_list
+                )
+
+                if discount_enabled:
+                    clone_product_subset = clone_product_subset[:-min]
+                    applied_discounts.append({ "amount": selected_discount_attributes['discount'] })
+                else:
+                    index += 1
+            
+            clone_product_subset = clone_product_subset[:-len(clone_product_subset)]
+
+
+        return applied_discounts
