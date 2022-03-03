@@ -100,6 +100,7 @@ class CrossProductDiscountFactorFactory:
                 discount_enabled = loading_factor.should_apply_discount(
                     min=min, max=max, skus_full_list=skus_full_list
                 ) and not any(self.cross_product_name in word for word in skus_full_list)
+                breakpoint()
 
                 if discount_enabled:
                     clone_product_subset = clone_product_subset[:-min]

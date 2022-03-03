@@ -11,7 +11,7 @@ class DiscountHandler():
     def __init__(self):
         self.discount_factories = {
             'A': ProductDiscountFactorFactory(['5A', '3A']),
-            'B': CrossProductDiscountFactorFactory(cross_product_name='E', discounts_to_apply=['2B']),
+            'B': CrossProductDiscountFactorFactory(cross_product_name='EE', discounts_to_apply=['2B']),
             'E': ProductDiscountFactorFactory(['2E']),
         }
 
@@ -60,3 +60,4 @@ def checkout(skus):
                     
     except InvalidInputException:
         return -1
+

@@ -70,17 +70,17 @@ def test_mixture_products():
     assert checkout_solution.checkout(skus) == 495
 
 def test_E_product_discounts():
-    skus = 'E'
-    assert checkout_solution.checkout(skus) == 40
+    # skus = 'E'
+    # assert checkout_solution.checkout(skus) == 40
 
-    skus = 'EE'
-    assert checkout_solution.checkout(skus) == 80
+    # skus = 'EE'
+    # assert checkout_solution.checkout(skus) == 80
 
-    skus = 'EEB'
-    assert checkout_solution.checkout(skus) == 80
+    # skus = 'EEB'
+    # assert checkout_solution.checkout(skus) == 80
 
-    skus = 'EEEEBB'
-    assert checkout_solution.checkout(skus) == 160
+    # skus = 'EEEEBB'
+    # assert checkout_solution.checkout(skus) == 160
     
     skus = 'AAAAAEEBAAABB'
     assert checkout_solution.checkout(skus) == 455
@@ -96,6 +96,7 @@ def test_invalid_input_responds_as_expected():
 
     skus = 'AzB'
     assert checkout_solution.checkout(skus) == -1
+
 
 
 
