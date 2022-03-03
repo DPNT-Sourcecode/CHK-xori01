@@ -20,9 +20,13 @@ class CrossProductDiscountFactor:
         max,
         skus_full_list,
     ):
+
         return bool(
             len(self.product_subset) >= min
             and len(self.product_subset) <= max
-            and (any(self.cross_product_name in word for word in skus_full_list))
-            and not self.disable_cross_product_discount
+            and (
+                any(self.cross_product_name in word for word in skus_full_list)
+                and not self.disable_cross_product_discount
+            )
         )
+
