@@ -22,11 +22,12 @@ class CrossProductDiscountFactor:
         max,
         skus_full_list,
     ):
-
+        breakpoint()
         return bool(
             len(self.product_subset) >= min
             and len(self.product_subset) <= max
-            and any(self.cross_product_name in word for word in skus_full_list) and skus_full_list.count(self.cross_product_name) % 2 != 0
+            and any(self.cross_product_name in word for word in skus_full_list) and "".join(skus_full_list).count(self.cross_product_name) % 2 != 0
         )
+
 
 
