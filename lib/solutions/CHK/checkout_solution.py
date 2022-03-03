@@ -7,8 +7,53 @@ from .utils.factories import (
     EProductDiscountFactory,
 )
 
+from .loading_factors.discount_loading_factors import (ProductDiscountFactor, CrossProductDiscountFactor)
+
 # noinspection PyUnusedLocal
 # skus = unicode string
+
+PRODUCT_STOCK_PRICES = {
+    'A': 50,
+    'B': 30,
+    'C': 20,
+    'D': 15,
+    'E': 40,
+}
+
+DISCOUNT_LIST = {
+    '3A': {
+        'discount': 20,
+        "loading_factor": ProductDiscountFactor(),
+        'rules': {
+            'min': 3,
+            'max': 4,
+        }
+    },
+    '5A': {
+        'discount': 50,
+        "loading_factor": ProductDiscountFactor(),
+        'rules': {
+            'min': 3,
+            'max': 4,
+        }
+    },
+    '2A': {
+        'discount': 20,
+        "loading_factor": ProductDiscountFactor(),
+        'rules': {
+            'min': 3,
+            'max': 4,
+        }
+    },
+    '2E': {
+        'discount': 20,
+        "loading_factor": CrossProductDiscountFactor(cross_product_name='B'),
+        'rules': {
+            'min': 3,
+            'max': 4,
+        }
+    },
+}
 
 
 class InvalidInputException(Exception):
