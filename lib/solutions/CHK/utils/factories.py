@@ -23,7 +23,7 @@ DISCOUNT_LIST = {
     },
     '2B': {
         'discount': 15,
-        "loading_factor": CrossProductDiscountFactor(cross_product_name='E'),
+        "loading_factor": CrossProductDiscountFactor(cross_product_name='E', disable_cross_product_discount=True),
         'rules': {
             'min': 2,
             'max': 2,
@@ -74,4 +74,5 @@ class ProductDiscountFactorFactory:
 
 
         return applied_discounts
+
 
