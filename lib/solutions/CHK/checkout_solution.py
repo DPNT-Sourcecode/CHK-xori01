@@ -1,6 +1,6 @@
 from itertools import groupby
 
-from .utils.factories import ProductDiscountFactorFactory
+from .utils.factories import ProductDiscountFactorFactory, CrossProductDiscountFactorFactory
 from .constants import PRODUCT_STOCK_PRICES
 
 # noinspection PyUnusedLocal
@@ -11,7 +11,7 @@ class DiscountHandler():
     def __init__(self):
         self.discount_factories = {
             'A': ProductDiscountFactorFactory(['5A', '3A']),
-            'B': ProductDiscountFactorFactory(['2B']),
+            'B': CrossProductDiscountFactorFactory(cross_product_name='E', discounts_to_apply=['2B']),
             'E': ProductDiscountFactorFactory(['2E']),
         }
 
