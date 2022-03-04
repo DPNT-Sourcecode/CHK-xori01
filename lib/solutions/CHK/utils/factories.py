@@ -74,4 +74,3 @@ class ProductDiscountFactorFactory:
 
 
         return applied_discounts
-
