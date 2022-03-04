@@ -217,13 +217,18 @@ def apply_price_loading_factors(skus, product_discount_list, products):
     for item in PRODUCT_STOCK_PRICES.keys():
         try:
             discount_loading_factor = get_loading_factor(item)
-            price, updated_skus = discount_loading_factor(skus, product_discount_list, products)
-            skus = updated_skus
-            final_price += price
+            for rule in product_discount_list[item].keys():
+                if item == 'K':
+                    price, updated_skus = discount_loading_factor(skus, product_discount_list, products, item, rule)
+                else:
+                    price, updated_skus = discount_loading_factor(skus, product_discount_list, products)
+                skus = updated_skus
+                final_price += price
         except KeyError:
             product_price = products[item]
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
     return final_price
+
 
 
