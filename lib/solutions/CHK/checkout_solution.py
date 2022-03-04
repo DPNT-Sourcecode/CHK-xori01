@@ -20,7 +20,7 @@ def checkout(skus):
             raise InvalidInputException("Invalid input detected")
 
         tmp_list = OrderedDict([
-            ('E', (2, (0, 0, 2)))
+            ('E', OrderedDict([ ('2', (('count', 0))) ]))
         ])
 
         breakpoint()
@@ -82,5 +82,6 @@ def checkout(skus):
                     
     except InvalidInputException:
         return -1
+
 
 
