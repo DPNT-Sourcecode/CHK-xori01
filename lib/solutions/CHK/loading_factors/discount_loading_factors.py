@@ -202,27 +202,30 @@ def product_multi_deal_loading_factor(skus, product_list, product, product_name,
     number_of_products = skus.count(product_name)
     product_price = product[product_name]
     discount_list = []
+    remainder_product_count = 0
 
     for rule in rules:
+        breakpoint()
         product_discount_data_object = product_list[product_name][rule]
 
         discount_threshold = product_discount_data_object['discount_threshold']
 
-        while number_a_products > 0:
-            prioritise_a5 = number_a_products % a5
+
+        while number_of_products > 0:
+            prioritise_a5 = number_of_products % discount_threshold
             
             if prioritise_a5 == 0:
-                product_list['A']['5']['count'] += 1
-                number_a_products -= a5
-            elif number_a_products > 0 and prioritise_a5 == a3:
-                product_list['A']['3']['count'] += 1
-                number_a_products -= a3
+                product_discount_data_object['count'] += 1
+                number_of_products -= discount_threshold
+            elif number_of_products > 0 and prioritise_a5 == discount_threshold:
+                product_discount_data_object['count'] += 1
+                number_of_products -= discount_threshold
             else:
-                number_a_products -= 1
+                number_of_products -= 1
 
         applied_discount = product_discount_data_object['count']
 
-        remainder_product_count = skus.count(product_name) - (applied_discount * discount_threshold) 
+        remainder_product_count += skus.count(product_name) - (applied_discount * discount_threshold) 
 
         apply_discount = (applied_discount * product_price * discount_threshold) - (applied_discount * 10)
 
@@ -236,7 +239,7 @@ def product_multi_deal_loading_factor(skus, product_list, product, product_name,
 
 def get_loading_factor(product_name):
     discount_loading_factors = OrderedDict([
-        ('A', product_a_pricing_factor),
+        ('A', product_multi_deal_loading_factor),
         ('B', product_b_pricing_factor),
         ('E', product_e_pricing_factor),
         ('F', product_f_pricing_factor),
@@ -254,7 +257,7 @@ def apply_price_loading_factors(skus, product_discount_list, products):
         try:
             discount_loading_factor = get_loading_factor(item)
             rules = product_discount_list[item].keys()
-            if item == 'K':
+            if item in ['K', 'A']:
                 price, updated_skus = discount_loading_factor(skus, product_discount_list, products, item, rules)
             else:
                 price, updated_skus = discount_loading_factor(skus, product_discount_list, products)
@@ -265,4 +268,5 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
     return final_price
+
 
