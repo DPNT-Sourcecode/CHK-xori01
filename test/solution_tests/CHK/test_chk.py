@@ -112,7 +112,7 @@ def test_F_product_discounts():
     expected = 130 + 40 + 45
     assert checkout_solution.checkout(skus) == expected
 
-@pytest.mark.parametrize("sku,expected", [
+@pytest.mark.parametrize("skus,expected", [
     ('H', 10),
     ('H' * 2, 20),
     ('H' * 2, 30),
@@ -121,34 +121,12 @@ def test_F_product_discounts():
     ('H' * 6, 55),
     ('H' * 7, 65),
     ('H' * 8, 75),
-    ('H' * 9, ),
-    ('H' * 10, 10),
+    ('H' * 9, 85),
+    ('H' * 10, 80),
 ])
-def test_h_discounts():
-    skus = 'H'
-    assert checkout_solution.checkout(skus) == 10
 
-    skus = 'HH'
-    assert checkout_solution.checkout(skus) == 20
-
-    skus = 'HHH'
-    assert checkout_solution.checkout(skus) == 30
-
-    skus = 'HHHH'
-    assert checkout_solution.checkout(skus) == 250
-
-    skus = 'AAAAAAA' # 7
-    assert checkout_solution.checkout(skus) == 300
-
-
-    skus = 'AAAAAAAA' # 8
-    assert checkout_solution.checkout(skus) == 330
-
-    skus = 'AAAAAAAAA' # 9
-    assert checkout_solution.checkout(skus) == 380
-
-    skus = 'AAAAAAAAAA' # 10
-    assert checkout_solution.checkout(skus) == 400
+def test_h_discounts(skus, expected):
+    assert checkout_solution.checkout(skus) == expected
 
 
 def test_invalid_input_responds_as_expected():
@@ -160,6 +138,7 @@ def test_invalid_input_responds_as_expected():
 
     skus = 'AzB'
     assert checkout_solution.checkout(skus) == -1
+
 
 
 

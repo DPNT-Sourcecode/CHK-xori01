@@ -114,6 +114,39 @@ def product_f_pricing_factor(skus, product_list, product):
 
     return price, skus
 
+def product_h_pricing_factor(skus, product_list, product):
+    number_a_products = skus.count("H")
+    product_price = product['H']
+    product_discount_5h = product_list['H']['5']
+
+    a5 = 5
+    a3 = 3
+
+    while number_a_products > 0:
+        prioritise_a5 = number_a_products % a5
+        
+        if prioritise_a5 == 0:
+            product_list['A']['5']['count'] += 1
+            number_a_products -= a5
+        elif number_a_products > 0 and prioritise_a5 == a3:
+            product_list['A']['3']['count'] += 1
+            number_a_products -= a3
+        else:
+            number_a_products -= 1
+
+    
+    a5_applied_count = product_list['A']['5']['count']
+    a3_applied_count = product_list['A']['3']['count']
+
+    remainder_product_count = skus.count('A') - (a5_applied_count * a5 + a3_applied_count * a3) 
+
+    apply_a5_discount = (a5_applied_count * product_price * a5) - (a5_applied_count * 50)
+    apply_a3_discount = (a3_applied_count * product_price * a3) - (a3_applied_count * 20)
+
+    price = apply_a5_discount + apply_a3_discount + (remainder_product_count * product_price)
+
+    return price, skus
+
 def get_loading_factor(product_name):
     discount_loading_factors = OrderedDict([
         ('A', product_a_pricing_factor),
@@ -138,3 +171,4 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
     return final_price
+
