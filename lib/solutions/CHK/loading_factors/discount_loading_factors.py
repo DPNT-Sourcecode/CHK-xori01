@@ -147,8 +147,6 @@ def product_h_pricing_factor(skus, product_list, product):
 
     price = apply_h10_discount + apply_h5_discount + (remainder_product_count * product_price)
 
-    breakpoint()
-
     return price, skus
 
 def get_loading_factor(product_name):
@@ -176,4 +174,5 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
     return final_price
+
 

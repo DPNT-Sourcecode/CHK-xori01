@@ -60,7 +60,7 @@ def checkout(skus):
                '10': {
                     'count': 0,
                     "discount": 0,
-                    'discount_threshold': 5,
+                    'discount_threshold': 10,
                }
            }
        }
@@ -71,3 +71,4 @@ def checkout(skus):
                     
     except InvalidInputException:
         return -1
+

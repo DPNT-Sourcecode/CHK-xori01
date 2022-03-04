@@ -121,7 +121,7 @@ def test_F_product_discounts():
     # ('H' * 6, 55),
     # ('H' * 7, 65),
     # ('H' * 8, 75),
-    # ('H' * 9, 85),
+    ('H' * 9, 85),
     ('H' * 10, 80),
 ])
 
@@ -138,6 +138,7 @@ def test_invalid_input_responds_as_expected():
 
     skus = 'AzB'
     assert checkout_solution.checkout(skus) == -1
+
 
 
 
