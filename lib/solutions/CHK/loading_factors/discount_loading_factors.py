@@ -173,28 +173,28 @@ def product_k_pricing_factor(skus, product_list, product):
 
     return price, skus
 
-def product_loading_factor_one_discount(skus, product_list, product, product_name):
-    number_k_products = skus.count(product_name)
+def product_loading_factor_one_discount(skus, product_list, product, product_name, rule):
+    number_of_products = skus.count(product_name)
     product_price = product[product_name]
-    product_discount_2k = product_list['K']['2']
+    product_discount_data_object = product_list[product_name][rule]
 
-    k2 = product_discount_2k['discount_threshold']
+    discount_threshold = product_discount_data_object['discount_threshold']
 
-    while number_k_products > 0:
-        if number_k_products > 0 and number_k_products % k2 == 0:
+    while number_of_products > 0:
+        if number_of_products > 0 and number_of_products % discount_threshold == 0:
             product_list['K']['2']['count'] += 1
-            number_k_products -= k2
+            number_of_products -= discount_threshold
         else:
-            number_k_products -= 1
+            number_of_products -= 1
 
     
-    k2_applied_count = product_discount_2k['count']
+    applied_discount = number_of_products['count']
 
-    remainder_product_count = skus.count('K') - (k2_applied_count * k2) 
+    remainder_product_count = skus.count(product_name) - (applied_discount * discount_threshold) 
 
-    apply_k2_discount = (k2_applied_count * product_price * k2) - (k2_applied_count * 10)
+    apply_discount = (applied_discount * product_price * discount_threshold) - (applied_discount * 10)
 
-    price = apply_k2_discount + (remainder_product_count * product_price)
+    price = apply_discount + (remainder_product_count * product_price)
 
     return price, skus
 
@@ -205,7 +205,7 @@ def get_loading_factor(product_name):
         ('E', product_e_pricing_factor),
         ('F', product_f_pricing_factor),
         ('H', product_h_pricing_factor),
-        ('K', product_k_pricing_factor),
+        ('K', product_loading_factor_one_discount),
         
     ])
 
@@ -225,4 +225,5 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
     return final_price
+
 
