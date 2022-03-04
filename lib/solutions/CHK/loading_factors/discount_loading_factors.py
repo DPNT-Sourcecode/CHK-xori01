@@ -37,6 +37,25 @@ def product_a_pricing_factor(skus, product_list, product):
     number_a_products = skus.count("A")
     product_price = product['A']
 
+    a5 = 5
+    a3 = 3
+
+    while number_a_products > 0:
+        prioritise_a5 = number_a_products % a5
+        
+        if prioritise_a5 == 0:
+            product_list['A']['5']['count'] += 1
+            number_a_products -= a5
+        elif number_a_products > 0 and prioritise_a5 == a3:
+            product_list['A']['3']['count'] += 1
+            number_a_products -= a3
+        else:
+            number_a_products -= 1
+
+        
+
+
+
     return product_price, skus
 
 def get_loading_factor(product_name):
@@ -60,6 +79,8 @@ def apply_price_loading_factors(skus, product_discount_list, products):
         except KeyError:
             product_price = products[item]
             product_quantity = skus.count(item)
+            final_price += product_price * product_quantity
+
 
 
 
