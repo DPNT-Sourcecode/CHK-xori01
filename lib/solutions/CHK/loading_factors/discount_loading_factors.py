@@ -33,13 +33,23 @@ def product_a_pricing_factor(skus, product_list, product):
 
     price = apply_a5_discount + apply_a3_discount + (remainder_product_count * product_price)
 
+    breakpoint()
+
     return price, skus
+
+def product_b_pricing_factor(skus, product_list, product):
+    return 0, skus
+
+def product_e_pricing_factor(skus, product_list, product):
+    return 0, skus
+
+
 
 def get_loading_factor(product_name):
     discount_loading_factors = OrderedDict([
         ('A', product_a_pricing_factor),
-        ('B', product_a_pricing_factor),
-        ('E', product_a_pricing_factor),
+        ('B', product_b_pricing_factor),
+        ('E', product_e_pricing_factor),
     ])
 
     return discount_loading_factors[product_name]
@@ -53,18 +63,8 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             price, updated_skus = discount_loading_factor(skus, product_discount_list, products)
             skus = updated_skus
             final_price += price
-        except KeyError as e:
-            breakpoint()
+        except KeyError:
             product_price = products[item]
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
-    breakpoint()
     return final_price
-
-
-
-
-
-
-
-
