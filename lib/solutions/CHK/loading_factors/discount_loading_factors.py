@@ -33,7 +33,29 @@ def product_a_pricing_factor(skus, product_list, product):
 
     price = apply_a5_discount + apply_a3_discount + (remainder_product_count * product_price)
 
-    breakpoint()
+    return price, skus
+
+def product_b_pricing_factor(skus, product_list, product):
+    number_a_products = skus.count("A")
+    product_price = product['A']
+
+    b2 = 2
+
+    while number_a_products > 0:
+        if number_a_products > 0 and number_a_products % b2 == 0:
+            product_list['B']['2']['count'] += 1
+            number_a_products -= b2
+        else:
+            number_a_products -= 1
+
+    
+    b2_applied_count = product_list['B']['2']['count']
+
+    remainder_product_count = skus.count('B') - (b2_applied_count * b2) 
+
+    apply_b2_discount = (b2_applied_count * product_price * b2) - (b2_applied_count * 15)
+
+    price = apply_b2_discount + (remainder_product_count * product_price)
 
     return price, skus
 
@@ -68,3 +90,4 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
     return final_price
+
