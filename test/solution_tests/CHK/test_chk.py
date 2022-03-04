@@ -53,21 +53,21 @@ def test_B_product_discounts():
     skus = 'BBBBB'
     assert checkout_solution.checkout(skus) == 120
 
-# def test_mixture_products():
-#     skus = 'AAABBAAA'
-#     assert checkout_solution.checkout(skus) == 295
+def test_mixture_products():
+    skus = 'AAABBAAA'
+    assert checkout_solution.checkout(skus) == 295
 
-#     skus = 'AABBCD'
-#     assert checkout_solution.checkout(skus) == 180
+    skus = 'AABBCD'
+    assert checkout_solution.checkout(skus) == 180
 
-#     skus = 'ABCDABCD'
-#     assert checkout_solution.checkout(skus) == 215
+    skus = 'ABCDABCD'
+    assert checkout_solution.checkout(skus) == 215
 
-#     skus = 'BABDDCAC'
-#     assert checkout_solution.checkout(skus) == 215
+    skus = 'BABDDCAC'
+    assert checkout_solution.checkout(skus) == 215
 
-#     skus = 'ABCDCBAABCABBAAA'
-#     assert checkout_solution.checkout(skus) == 495
+    skus = 'ABCDCBAABCABBAAA'
+    assert checkout_solution.checkout(skus) == 495
 
 def test_E_product_discounts():
     skus = 'E'
@@ -87,15 +87,16 @@ def test_E_product_discounts():
 
 
 
-# def test_invalid_input_responds_as_expected():
-#     skus = 'LLLP'
-#     assert checkout_solution.checkout(skus) == -1
+def test_invalid_input_responds_as_expected():
+    skus = 'LLLP'
+    assert checkout_solution.checkout(skus) == -1
 
-#     skus = '12384'
-#     assert checkout_solution.checkout(skus) == -1
+    skus = '12384'
+    assert checkout_solution.checkout(skus) == -1
 
-#     skus = 'AzB'
-#     assert checkout_solution.checkout(skus) == -1
+    skus = 'AzB'
+    assert checkout_solution.checkout(skus) == -1
+
 
 
 
