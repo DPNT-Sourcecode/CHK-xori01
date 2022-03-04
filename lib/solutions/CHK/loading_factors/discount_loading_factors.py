@@ -198,7 +198,7 @@ def product_loading_factor_one_discount(skus, product_list, product, product_nam
 
     return price, skus
 
-def product_a_pricing_factor(skus, product_list, product, product_name, rules):
+def product_multi_deal_loading_factor(skus, product_list, product, product_name, rules):
     number_of_products = skus.count(product_name)
     product_price = product[product_name]
     discount_list = []
@@ -265,3 +265,4 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
     return final_price
+
