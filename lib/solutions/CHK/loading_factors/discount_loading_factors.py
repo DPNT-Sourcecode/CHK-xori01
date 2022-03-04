@@ -115,34 +115,34 @@ def product_f_pricing_factor(skus, product_list, product):
     return price, skus
 
 def product_h_pricing_factor(skus, product_list, product):
-    number_a_products = skus.count("H")
+    number_of_products = skus.count("H")
     product_price = product['H']
     product_discount_10h = product_list['H']['10']
     product_discount_5h = product_list['H']['5']
 
-    h10 = product_discount_10h['count']
-    h5 = product_discount_5h['count']
+    h10 = product_discount_10h['discount_threshold']
+    h5 = product_discount_5h['discount_threshold']
 
-    while number_a_products > 0:
-        prioritise_a5 = number_a_products % h10
+    while number_of_products > 0:
+        prioritise_h10 = number_of_products % h10
         
-        if prioritise_a5 == 0:
-            product_list['A']['5']['count'] += 1
-            number_a_products -= h10
-        elif number_a_products > 0 and prioritise_a5 == a3:
-            product_list['A']['3']['count'] += 1
-            number_a_products -= a3
+        if prioritise_h10 == 0:
+            product_discount_10h['count'] += 1
+            number_of_products -= h10
+        elif number_of_products > 0 and prioritise_h10 == h5:
+            product_discount_5h['count'] += 1
+            number_of_products -= h5
         else:
-            number_a_products -= 1
+            number_of_products -= 1
 
     
-    a5_applied_count = product_list['A']['5']['count']
-    a3_applied_count = product_list['A']['3']['count']
+    h10_applied_count = product_discount_10h['count']
+    h5_applied_count = product_discount_5h['count']
 
-    remainder_product_count = skus.count('A') - (a5_applied_count * a5 + a3_applied_count * a3) 
+    remainder_product_count = skus.count('A') - (h10_applied_count * h10 + h5_applied_count * h5) 
 
-    apply_a5_discount = (a5_applied_count * product_price * a5) - (a5_applied_count * 50)
-    apply_a3_discount = (a3_applied_count * product_price * a3) - (a3_applied_count * 20)
+    apply_a5_discount = (h10_applied_count * product_price * h10) - (h10_applied_count * 10)
+    apply_a3_discount = (h5_applied_count * product_price * a3) - (a3_applied_count * 20)
 
     price = apply_a5_discount + apply_a3_discount + (remainder_product_count * product_price)
 
@@ -172,5 +172,3 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
     return final_price
-
-
