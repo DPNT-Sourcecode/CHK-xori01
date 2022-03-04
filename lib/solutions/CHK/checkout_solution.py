@@ -1,6 +1,3 @@
-from itertools import groupby
-
-from .utils.factories import ProductDiscountFactorFactory
 from .loading_factors.discount_loading_factors import apply_price_loading_factors
 from .constants import PRODUCT_STOCK_PRICES
 

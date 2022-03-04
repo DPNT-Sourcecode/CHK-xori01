@@ -3,37 +3,6 @@ from math import remainder
 
 from ..constants import PRODUCT_STOCK_PRICES
 
-class ProductDiscountFactor:
-
-    product_subset = []
-
-    def __init__(self, cross_product_name=None):
-        self.cross_product_name = cross_product_name
-
-    def should_apply_discount(self, min, max, **kwargs):
-        return bool(len(self.product_subset) >= min and len(self.product_subset) <= max)
-
-
-class CrossProductDiscountFactor:
-
-    product_subset = []
-
-    def __init__(self, cross_product_name):
-        self.cross_product_name = cross_product_name
-
-    def should_apply_discount(
-        self,
-        min,
-        max,
-        skus_full_list,
-    ):
-        breakpoint()
-        return bool(
-            len(self.product_subset) >= min
-            and len(self.product_subset) <= max
-            and any(self.cross_product_name in word for word in skus_full_list) and "".join(skus_full_list).count(self.cross_product_name) % 2 == 0
-        )
-
 def product_a_pricing_factor(skus, product_list, product):
     number_a_products = skus.count("A")
     product_price = product['A']
@@ -64,7 +33,7 @@ def product_a_pricing_factor(skus, product_list, product):
 
     price = apply_a5_discount + apply_a3_discount + (remainder_product_count * product_price)
 
-    return product_price, skus
+    return price, skus
 
 def get_loading_factor(product_name):
     discount_loading_factors = OrderedDict([
@@ -82,12 +51,15 @@ def apply_price_loading_factors(skus, product_discount_list, products):
         try:
             discount_loading_factor = get_loading_factor(item)
             price, updated_skus = discount_loading_factor(skus, product_discount_list, products)
+            breakpoint()
             skus = updated_skus
             final_price += price
         except KeyError:
             product_price = products[item]
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
+
+    return final_price
 
 
 
