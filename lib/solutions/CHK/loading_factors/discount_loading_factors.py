@@ -59,9 +59,10 @@ def product_a_pricing_factor(skus, product_list, product):
 
     remainder_product_count = skus.count('A') - (a5_applied_count * a5 + a3_applied_count * a3) 
 
-    apply_a5_discount = (a5_applied_count * product_price * a5) - (a3)
+    apply_a5_discount = (a5_applied_count * product_price * a5) - (a5_applied_count * 50)
+    apply_a3_discount = (a3_applied_count * product_price * a3) - (a3_applied_count * 20)
 
-
+    price = apply_a5_discount + apply_a3_discount + (remainder_product_count * product_price)
 
     return product_price, skus
 
@@ -87,6 +88,7 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             product_price = products[item]
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
+
 
 
 
