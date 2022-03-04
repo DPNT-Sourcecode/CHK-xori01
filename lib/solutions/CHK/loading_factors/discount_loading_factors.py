@@ -221,19 +221,21 @@ def product_multi_deal_loading_factor(skus, product_list, product, product_name,
         else:
             number_of_products -= 1
 
-        breakpoint()
-
     applied_discount = product_discount_data_object['count']
 
     remainder_product_count += skus.count(product_name) - (applied_discount * discount_threshold) 
 
-    apply_discount = (applied_discount * product_price * discount_threshold) - (applied_discount * 10)
+    apply_discount = (applied_discount * product_price * discount_threshold) - (applied_discount * product_discount_data_object['discount'])
 
     discount_list.append(apply_discount)
 
-    breakpoint()
     price = 0
-    # price = apply_a5_discount + apply_a3_discount + (remainder_product_count * product_price)
+
+    for discount in discount_list:
+        price += discount
+
+    price += remainder_product_count * product_price
+    breakpoint()
 
     return price, skus
 
@@ -269,6 +271,7 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
     return final_price
+
 
 
 

@@ -38,12 +38,12 @@ DISCOUNT_LIST = {
     "A": {
         "5": {
             "count": 0,
-            "discount": 0,
+            "discount": 50,
             "discount_threshold": 5,
         },
         "3": {
             "count": 0,
-            "discount": 0,
+            "discount": 20,
             "discount_threshold": 3,
         },
     },
