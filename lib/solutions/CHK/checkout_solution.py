@@ -29,6 +29,14 @@ class DiscountHandler():
 class InvalidInputException(Exception):
     pass
 
+PRODUCTS = {
+    'A': 50,
+    'B': 30,
+    'C': 20,
+    'D': 15,
+    'E': 40,
+}
+
 def checkout(skus):
     try:
         allowed_choices = ["".join(key) for key in PRODUCT_STOCK_PRICES.keys()]
@@ -60,3 +68,4 @@ def checkout(skus):
                     
     except InvalidInputException:
         return -1
+
