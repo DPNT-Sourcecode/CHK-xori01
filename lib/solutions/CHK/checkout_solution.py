@@ -54,7 +54,12 @@ def checkout(skus):
            'H': {
                '5': {
                     'count': 0,
-                    "discount": 5,
+                    "discount": 0,
+                    'discount_threshold': 5,
+               },
+               '10': {
+                    'count': 0,
+                    "discount": 0,
                     'discount_threshold': 5,
                }
            }
@@ -66,4 +71,5 @@ def checkout(skus):
                     
     except InvalidInputException:
         return -1
+
 

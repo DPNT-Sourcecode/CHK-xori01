@@ -117,17 +117,18 @@ def product_f_pricing_factor(skus, product_list, product):
 def product_h_pricing_factor(skus, product_list, product):
     number_a_products = skus.count("H")
     product_price = product['H']
+    product_discount_10h = product_list['H']['10']
     product_discount_5h = product_list['H']['5']
 
-    a5 = 5
-    a3 = 3
+    h10 = product_discount_10h['count']
+    h5 = product_discount_5h['count']
 
     while number_a_products > 0:
-        prioritise_a5 = number_a_products % a5
+        prioritise_a5 = number_a_products % h10
         
         if prioritise_a5 == 0:
             product_list['A']['5']['count'] += 1
-            number_a_products -= a5
+            number_a_products -= h10
         elif number_a_products > 0 and prioritise_a5 == a3:
             product_list['A']['3']['count'] += 1
             number_a_products -= a3
@@ -171,4 +172,5 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
     return final_price
+
 
