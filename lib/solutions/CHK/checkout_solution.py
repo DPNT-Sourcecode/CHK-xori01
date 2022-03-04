@@ -44,6 +44,13 @@ def checkout(skus):
                    'discount_threshold': 2,
                }
            },
+           'F': {
+               '3': {
+                   'count': 0,
+                   "discount": 0,
+                   'discount_threshold': 3,
+               }
+           }
        }
 
         return apply_price_loading_factors(skus, product_discounts_list, PRODUCT_STOCK_PRICES)
@@ -52,3 +59,4 @@ def checkout(skus):
                     
     except InvalidInputException:
         return -1
+

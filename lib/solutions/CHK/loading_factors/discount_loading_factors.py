@@ -89,7 +89,29 @@ def product_e_pricing_factor(skus, product_list, product):
 
     return price, skus
 
+def product_f_pricing_factor(skus, product_list, product):
+    number_f_products = skus.count("F")
+    product_price = product['F']
 
+    b2 = 2
+
+    while number_f_products > 0:
+        if number_f_products > 0 and number_f_products % b2 == 0:
+            product_list['B']['2']['count'] += 1
+            number_f_products -= b2
+        else:
+            number_f_products -= 1
+
+    
+    b2_applied_count = product_list['B']['2']['count']
+
+    remainder_product_count = skus.count('B') - (b2_applied_count * b2) 
+
+    apply_b2_discount = (b2_applied_count * product_price * b2) - (b2_applied_count * 15)
+
+    price = apply_b2_discount + (remainder_product_count * product_price)
+
+    return price, skus
 
 def get_loading_factor(product_name):
     discount_loading_factors = OrderedDict([
@@ -114,6 +136,7 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
     return final_price
+
 
 
 
