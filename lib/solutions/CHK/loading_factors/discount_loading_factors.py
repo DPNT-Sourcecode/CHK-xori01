@@ -1,4 +1,5 @@
 from collections import OrderedDict
+from math import remainder
 
 from ..constants import PRODUCT_STOCK_PRICES
 
@@ -52,7 +53,13 @@ def product_a_pricing_factor(skus, product_list, product):
         else:
             number_a_products -= 1
 
-        
+    
+    a5_applied_count = product_list['A']['5']
+    a3_applied_count = product_list['A']['3']
+
+    remainder_product_count = skus.count('A') - (a5_applied_count * a5 + a3_applied_count * a3) 
+
+    apply_a5_discount = (a5_applied_count * product_price * a5) - (a3)
 
 
 
@@ -80,6 +87,7 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             product_price = products[item]
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
+
 
 
 
