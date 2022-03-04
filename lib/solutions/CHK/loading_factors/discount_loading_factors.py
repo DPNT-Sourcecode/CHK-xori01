@@ -125,7 +125,6 @@ def product_h_pricing_factor(skus, product_list, product):
 
     while number_of_products > 0:
         prioritise_h10 = number_of_products % h10
-        breakpoint()
         
         if prioritise_h10 == 0:
             product_discount_10h['count'] += 1
@@ -142,7 +141,7 @@ def product_h_pricing_factor(skus, product_list, product):
 
     remainder_product_count = skus.count('H') - (h10_applied_count * h10 + h5_applied_count * h5) 
 
-    apply_h10_discount = (h10_applied_count * product_price * h10) - (h10_applied_count * 10)
+    apply_h10_discount = (h10_applied_count * product_price * h10) - (h10_applied_count * 20)
     apply_h5_discount = (h5_applied_count * product_price * h5) - (h5_applied_count * 5)
 
     price = apply_h10_discount + apply_h5_discount + (remainder_product_count * product_price)
@@ -174,5 +173,6 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
     return final_price
+
 
 
