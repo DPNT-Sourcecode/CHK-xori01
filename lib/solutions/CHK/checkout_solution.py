@@ -59,4 +59,3 @@ def checkout(skus):
                     
     except InvalidInputException:
         return -1
-

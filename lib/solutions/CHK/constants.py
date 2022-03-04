@@ -6,4 +6,3 @@ PRODUCT_STOCK_PRICES = {
     'D': 15,
     'F': 10,
 }
-
