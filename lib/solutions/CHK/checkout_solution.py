@@ -1,4 +1,4 @@
-from collections import OrderedDict
+from copy import deepcopy
 
 from .loading_factors.discount_loading_factors import apply_price_loading_factors
 from .constants import PRODUCT_STOCK_PRICES
@@ -11,55 +11,6 @@ class InvalidInputException(Exception):
     pass
 
 
-DISCOUNT_LIST = {
-    "E": {
-        "2": {
-            "count": 0,
-            "discount": 0,
-            "discount_threshold": 2,
-        }
-    },
-    "A": {
-        "5": {
-            "count": 0,
-            "discount": 0,
-            "discount_threshold": 5,
-        },
-        "3": {
-            "count": 0,
-            "discount": 0,
-            "discount_threshold": 3,
-        },
-    },
-    "B": {
-        "2": {
-            "count": 0,
-            "discount": 0,
-            "discount_threshold": 2,
-        }
-    },
-    "F": {
-        "3": {
-            "count": 0,
-            "discount": 0,
-            "discount_threshold": 3,
-        }
-    },
-    "H": {
-        "5": {
-            "count": 0,
-            "discount": 0,
-            "discount_threshold": 5,
-        },
-        "10": {
-            "count": 0,
-            "discount": 0,
-            "discount_threshold": 10,
-        },
-    },
-    "K": {},
-}
-
 
 def checkout(skus):
     try:
@@ -70,7 +21,7 @@ def checkout(skus):
         ):
             raise InvalidInputException("Invalid input detected")
 
-        product_discounts_list = copy(DISCOUNT_LIST)
+        product_discounts_list = deepcopy(DISCOUNT_LIST)
 
         return apply_price_loading_factors(
             skus, product_discounts_list, PRODUCT_STOCK_PRICES
@@ -78,6 +29,7 @@ def checkout(skus):
 
     except InvalidInputException:
         return -1
+
 
 
 
