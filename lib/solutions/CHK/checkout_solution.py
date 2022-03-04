@@ -1,3 +1,5 @@
+from collections import OrderedDict
+
 from .loading_factors.discount_loading_factors import apply_price_loading_factors
 from .constants import PRODUCT_STOCK_PRICES
 
@@ -16,6 +18,12 @@ def checkout(skus):
             allowed_sku in allowed_choices for allowed_sku in skus
         ):
             raise InvalidInputException("Invalid input detected")
+
+        tmp_list = OrderedDict([
+            ('E', (2, (0, 0, 2)))
+        ])
+
+        breakpoint()
 
         product_discounts_list = {
            'E': {
@@ -62,6 +70,9 @@ def checkout(skus):
                     "discount": 0,
                     'discount_threshold': 10,
                }
+           },
+           "K": {
+
            }
        }
 
@@ -71,4 +82,5 @@ def checkout(skus):
                     
     except InvalidInputException:
         return -1
+
 
