@@ -26,8 +26,6 @@ def product_a_pricing_factor(skus, product_list, product):
     a5_applied_count = product_list['A']['5']['count']
     a3_applied_count = product_list['A']['3']['count']
 
-    breakpoint()
-
     remainder_product_count = skus.count('A') - (a5_applied_count * a5 + a3_applied_count * a3) 
 
     apply_a5_discount = (a5_applied_count * product_price * a5) - (a5_applied_count * 50)
@@ -55,12 +53,14 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             price, updated_skus = discount_loading_factor(skus, product_discount_list, products)
             skus = updated_skus
             final_price += price
-        except KeyError:
+        except KeyError as e:
+            breakpoint()
             product_price = products[item]
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
-
+    breakpoint()
     return final_price
+
 
 
 
