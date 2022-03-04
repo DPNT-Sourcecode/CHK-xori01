@@ -46,26 +46,38 @@ def checkout(skus):
         ):
             raise InvalidInputException("Invalid input detected")
 
-        final_price = 0
-        sort_skus = ["".join(group) for _, group in groupby(sorted(skus))]
+        product_discounts_list = {
+           'E': {
+               '2': {
+                   'count': 0,
+                   "discount": 0,
+                   'discount_threshold': 2,
+               }
+           },
+           'A': {
+               '5': {
+                   'count': 0,
+                   "discount": 0,
+                   'discount_threshold': 5,
+               },
+               '2': {
+                   'count': 0,
+                   "discount": 0,
+                   'discount_threshold': 2,
+               }
+           },
+           'B': {
+               '2': {
+                   'count': 0,
+                   "discount": 0,
+                   'discount_threshold': 2,
+               }
+           },
+       }
 
-        price_before_discount = 0
-
-        for sku_subset in sort_skus:
-            product_name = sku_subset[0]
-            product_price = PRODUCT_STOCK_PRICES[product_name]
-            price_before_discount = len(sku_subset) * product_price
-            price_after_discount = price_before_discount
-            discounts = DiscountHandler().apply(product_name, sku_subset=sku_subset, skus_full_list=sort_skus)
-            print(discounts)
-
-            for discount in discounts:
-                amount = discount['amount']
-                price_after_discount -= amount
-
-            final_price += price_after_discount
-        return final_price
+       
                     
     except InvalidInputException:
         return -1
+
 
