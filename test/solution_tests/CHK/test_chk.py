@@ -96,7 +96,15 @@ def test_F_product_discounts():
     assert checkout_solution.checkout(skus) == 20
 
     skus = 'AAFFFBB'
-    assert checkout_solution.checkout(skus) == 160
+    assert checkout_solution.checkout(skus) == 165
+
+    skus = 'AAAFFFBB'
+    expected = 130 + 20 + 45
+    assert checkout_solution.checkout(skus) == expected
+
+    skus = 'AAAFFFBB'
+    expected = 130 + 20 + 45
+    assert checkout_solution.checkout(skus) == expected
 
 
 def test_invalid_input_responds_as_expected():
@@ -108,6 +116,7 @@ def test_invalid_input_responds_as_expected():
 
     skus = 'AzB'
     assert checkout_solution.checkout(skus) == -1
+
 
 
 

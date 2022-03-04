@@ -97,9 +97,8 @@ def product_f_pricing_factor(skus, product_list, product):
     f3 = product_discount_3f['discount_threshold']
 
     while number_f_products > 0:
-        breakpoint()
         if number_f_products > 0 and number_f_products % f3 == 0:
-            product_list['B']['2']['count'] += 1
+            product_list['F']['3']['count'] += 1
             number_f_products -= f3
         else:
             number_f_products -= 1
@@ -112,6 +111,8 @@ def product_f_pricing_factor(skus, product_list, product):
     apply_f3_discount = (f3_applied_count * product_price * f3) - (f3_applied_count * 10)
 
     price = apply_f3_discount + (remainder_product_count * product_price)
+
+    breakpoint()
 
     return price, skus
 
@@ -139,6 +140,7 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
     return final_price
+
 
 
 
