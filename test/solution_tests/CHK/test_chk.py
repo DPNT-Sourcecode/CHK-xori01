@@ -110,6 +110,33 @@ def test_F_product_discounts():
     expected = 130 + 40 + 45
     assert checkout_solution.checkout(skus) == expected
 
+import pytest.mark.parametetize()
+def test_h_discounts():
+    skus = 'H'
+    assert checkout_solution.checkout(skus) == 10
+
+    skus = 'HH'
+    assert checkout_solution.checkout(skus) == 20
+
+    skus = 'HHH'
+    assert checkout_solution.checkout(skus) == 30
+
+    skus = 'HHHH'
+    assert checkout_solution.checkout(skus) == 250
+
+    skus = 'AAAAAAA' # 7
+    assert checkout_solution.checkout(skus) == 300
+
+
+    skus = 'AAAAAAAA' # 8
+    assert checkout_solution.checkout(skus) == 330
+
+    skus = 'AAAAAAAAA' # 9
+    assert checkout_solution.checkout(skus) == 380
+
+    skus = 'AAAAAAAAAA' # 10
+    assert checkout_solution.checkout(skus) == 400
+
 
 def test_invalid_input_responds_as_expected():
     skus = 'LLLP'
@@ -120,6 +147,7 @@ def test_invalid_input_responds_as_expected():
 
     skus = 'AzB'
     assert checkout_solution.checkout(skus) == -1
+
 
 
 
