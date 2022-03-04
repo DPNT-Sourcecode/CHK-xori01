@@ -149,15 +149,15 @@ def product_h_pricing_factor(skus, product_list, product):
     return price, skus
 
 def product_k_pricing_factor(skus, product_list, product):
-    number_k_products = skus.count("k")
-    product_price = product['k']
-    product_discount_2k = product_list['k']['2']
+    number_k_products = skus.count("K")
+    product_price = product['K']
+    product_discount_2k = product_list['K']['2']
 
     k2 = product_discount_2k['discount_threshold']
 
     while number_k_products > 0:
         if number_k_products > 0 and number_k_products % k2 == 0:
-            product_list['k']['3']['count'] += 1
+            product_list['K']['2']['count'] += 1
             number_k_products -= k2
         else:
             number_k_products -= 1
@@ -180,7 +180,7 @@ def get_loading_factor(product_name):
         ('E', product_e_pricing_factor),
         ('F', product_f_pricing_factor),
         ('H', product_h_pricing_factor),
-        ('K', product_h_pricing_factor),
+        ('K', product_k_pricing_factor),
         
     ])
 
@@ -200,6 +200,7 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
     return final_price
+
 
 
 
