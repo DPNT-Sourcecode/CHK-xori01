@@ -125,6 +125,7 @@ def product_h_pricing_factor(skus, product_list, product):
 
     while number_of_products > 0:
         prioritise_h10 = number_of_products % h10
+        breakpoint()
         
         if prioritise_h10 == 0:
             product_discount_10h['count'] += 1
@@ -139,12 +140,14 @@ def product_h_pricing_factor(skus, product_list, product):
     h10_applied_count = product_discount_10h['count']
     h5_applied_count = product_discount_5h['count']
 
-    remainder_product_count = skus.count('A') - (h10_applied_count * h10 + h5_applied_count * h5) 
+    remainder_product_count = skus.count('H') - (h10_applied_count * h10 + h5_applied_count * h5) 
 
-    apply_a5_discount = (h10_applied_count * product_price * h10) - (h10_applied_count * 10)
-    apply_a3_discount = (h5_applied_count * product_price * a3) - (a3_applied_count * 20)
+    apply_h10_discount = (h10_applied_count * product_price * h10) - (h10_applied_count * 10)
+    apply_h5_discount = (h5_applied_count * product_price * h5) - (h5_applied_count * 5)
 
-    price = apply_a5_discount + apply_a3_discount + (remainder_product_count * product_price)
+    price = apply_h10_discount + apply_h5_discount + (remainder_product_count * product_price)
+
+    breakpoint()
 
     return price, skus
 
@@ -154,6 +157,7 @@ def get_loading_factor(product_name):
         ('B', product_b_pricing_factor),
         ('E', product_e_pricing_factor),
         ('F', product_f_pricing_factor),
+        ('H', product_h_pricing_factor),
     ])
 
     return discount_loading_factors[product_name]
@@ -172,3 +176,4 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
     return final_price
+
