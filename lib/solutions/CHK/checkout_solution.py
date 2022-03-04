@@ -1,7 +1,7 @@
 from copy import deepcopy
 
 from .loading_factors.discount_loading_factors import apply_price_loading_factors
-from .constants import PRODUCT_STOCK_PRICES
+from .constants import PRODUCT_STOCK_PRICES, DISCOUNT_LIST
 
 # noinspection PyUnusedLocal
 # skus = unicode string
@@ -29,6 +29,7 @@ def checkout(skus):
 
     except InvalidInputException:
         return -1
+
 
 
 
