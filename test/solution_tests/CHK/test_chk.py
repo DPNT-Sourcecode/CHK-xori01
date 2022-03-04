@@ -40,18 +40,18 @@ def test_checkout_solution_sums_with_discounts():
     expected_B_cost= 30
     assert checkout_solution.checkout(skus) == (expected_A_cost + expected_B_cost)
 
-# def test_B_product_discounts():
-#     skus = 'BB'
-#     assert checkout_solution.checkout(skus) == 45
+def test_B_product_discounts():
+    skus = 'BB'
+    assert checkout_solution.checkout(skus) == 45
 
-#     skus = 'BBB'
-#     assert checkout_solution.checkout(skus) == 75
+    skus = 'BBB'
+    assert checkout_solution.checkout(skus) == 75
 
-#     skus = 'BBBB'
-#     assert checkout_solution.checkout(skus) == 90
+    skus = 'BBBB'
+    assert checkout_solution.checkout(skus) == 90
 
-#     skus = 'BBBBB'
-#     assert checkout_solution.checkout(skus) == 120
+    skus = 'BBBBB'
+    assert checkout_solution.checkout(skus) == 120
 
 # def test_mixture_products():
 #     skus = 'AAABBAAA'
@@ -69,21 +69,21 @@ def test_checkout_solution_sums_with_discounts():
 #     skus = 'ABCDCBAABCABBAAA'
 #     assert checkout_solution.checkout(skus) == 495
 
-# def test_E_product_discounts():
-#     # skus = 'E'
-#     # assert checkout_solution.checkout(skus) == 40
+def test_E_product_discounts():
+    skus = 'E'
+    assert checkout_solution.checkout(skus) == 40
 
-#     # skus = 'EE'
-#     # assert checkout_solution.checkout(skus) == 80
+    skus = 'EE'
+    assert checkout_solution.checkout(skus) == 80
 
-#     # skus = 'EEB'
-#     # assert checkout_solution.checkout(skus) == 80
+    skus = 'EEB'
+    assert checkout_solution.checkout(skus) == 80
 
-#     skus = 'EEEEBB'
-#     assert checkout_solution.checkout(skus) == 160
+    skus = 'EEEEBB'
+    assert checkout_solution.checkout(skus) == 160
     
-#     skus = 'AAAAAEEBAAABB'
-#     assert checkout_solution.checkout(skus) == 455
+    skus = 'AAAAAEEBAAABB'
+    assert checkout_solution.checkout(skus) == 455
 
 
 
@@ -96,6 +96,7 @@ def test_checkout_solution_sums_with_discounts():
 
 #     skus = 'AzB'
 #     assert checkout_solution.checkout(skus) == -1
+
 
 
 

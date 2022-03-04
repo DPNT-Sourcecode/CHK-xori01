@@ -59,7 +59,7 @@ def product_b_pricing_factor(skus, product_list, product):
 
     return price, skus
 
-def product_b_pricing_factor(skus, product_list, product):
+def product_e_pricing_factor(skus, product_list, product):
     number_e_products = skus.count("E")
     number_b_products = skus.count("B")
 
@@ -74,16 +74,16 @@ def product_b_pricing_factor(skus, product_list, product):
                 skus = skus.replace('B', '', 1)
             
             product_discount_2e['count'] += 1
-            number_a_products -= e2
+            number_e_products -= e2
         else:
-            number_a_products -= 1
+            number_e_products -= 1
 
     
-    e2_applied_count = product_list['B']['2']['count']
+    e2_applied_count = product_discount_2e['count']
 
-    remainder_product_count = skus.count('B') - (b2_applied_count * b2) 
+    remainder_product_count = skus.count('E') - (e2_applied_count * e2) 
 
-    apply_b2_discount = (b2_applied_count * product_price * b2) - (b2_applied_count * 15)
+    apply_b2_discount = (e2_applied_count * product_price * e2)
 
     price = apply_b2_discount + (remainder_product_count * product_price)
 
@@ -114,5 +114,6 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
     return final_price
+
 
 
