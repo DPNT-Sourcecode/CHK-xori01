@@ -1,4 +1,4 @@
-from typings import Dict, Tuple
+from typing import Dict, Tuple
 
 from collections import OrderedDict
 from math import remainder
@@ -6,7 +6,7 @@ from unittest import skipUnless
 
 from ..constants import PRODUCT_STOCK_PRICES
 
-def cross_product_loading_factor(skus: str, product_list: Dict[str, object], product: Dict[str, int], product_name: str, rules: list) -> Tuple(str, str):
+def cross_product_loading_factor(skus: str, product_list: Dict[str, object], product: Dict[str, int], product_name: str, rules: list) -> Tuple[str, str]:
     """
     Cross product loading factor for calculating discounts across products
 
@@ -67,7 +67,7 @@ def cross_product_loading_factor(skus: str, product_list: Dict[str, object], pro
 
     return price, skus
 
-def product_loading_factor_single_discount(skus: str, product_list: Dict[str, object], product: Dict[str, int], product_name: str, rules: list) -> Tuple(str, str):
+def product_loading_factor_single_discount(skus: str, product_list: Dict[str, object], product: Dict[str, int], product_name: str, rules: list) -> Tuple[str, str]:
     """
     Single product loading factor for calculating discounts with one rule
 
@@ -121,7 +121,7 @@ def product_loading_factor_single_discount(skus: str, product_list: Dict[str, ob
 
     return price, skus
 
-def product_loading_factor_multiple_discount(skus: str, product_list: Dict[str, object], product: Dict[str, int], product_name: str, rules: list):
+def product_loading_factor_multiple_discount(skus: str, product_list: Dict[str, object], product: Dict[str, int], product_name: str, rules: list) -> Tuple[str, str]:
     """
     Multiple product loading factor for calculating discounts with two rule
 
@@ -188,7 +188,7 @@ def product_loading_factor_multiple_discount(skus: str, product_list: Dict[str, 
 
     return price, skus
 
-def group_discount_loading_factor(skus: str, product_list: Dict[str, object], product: Dict[str, int], product_name: str, rules: list):
+def group_discount_loading_factor(skus: str, product_list: Dict[str, object], product: Dict[str, int], product_name: str, rules: list) -> Tuple[str, str]:
     """
     Group product loading factor for calculating discounts that have shared group discounts
 
@@ -281,7 +281,20 @@ def group_discount_loading_factor(skus: str, product_list: Dict[str, object], pr
     price = apply_discount + remainder_cost
     return price, skus
 
-def get_loading_factor(product_name):
+def get_loading_factor(product_name: str) -> function:
+    """
+    Helper method for returning loading factors against product
+
+    Parameters
+    ----------
+
+    product_name: str
+
+    Returns
+    -------
+
+    discount_loading_factor: function
+    """
     discount_loading_factors = OrderedDict([
         ('A', product_loading_factor_multiple_discount),
         ('B', product_loading_factor_single_discount),
@@ -304,14 +317,14 @@ def get_loading_factor(product_name):
 
     return discount_loading_factors[product_name]
 
-def apply_price_loading_factors(skus, product_discount_list, products):
+def apply_price_loading_factors(skus: str, product_discount_list: Dict[str, object], product: Dict[str, int]):
     final_price = 0
 
     for item in PRODUCT_STOCK_PRICES.keys():
         try:
             discount_loading_factor = get_loading_factor(item)
             rules = list(product_discount_list[item].keys())
-            price, updated_skus = discount_loading_factor(skus, product_discount_list, products, item, rules)
+            price, updated_skus = discount_loading_factor(skus, product_discount_list, product, item, rules)
             skus = updated_skus
             final_price += price
         except KeyError:
@@ -320,11 +333,3 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             final_price += product_price * product_quantity
 
     return final_price
-
-
-
-
-
-
-
-
