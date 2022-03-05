@@ -1,5 +1,6 @@
 from collections import OrderedDict
 from math import remainder
+from unittest import skipUnless
 
 from ..constants import PRODUCT_STOCK_PRICES
 
@@ -137,7 +138,7 @@ def group_discount_loading_factor(skus, product_list, product, product_name, rul
             break
         group_skus = group_skus[int(3 * divisible):]
     
-    skus = skus.replace(group_skus, '', 1) if len(group_sku) > 3 : sku
+    skus = skus.replace(group_skus, '', 1) if len(group_skus) >= 3 else skus
     breakpoint()
 
     remainder_cost = 0
@@ -190,6 +191,7 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             final_price += product_price * product_quantity
 
     return final_price
+
 
 
 
