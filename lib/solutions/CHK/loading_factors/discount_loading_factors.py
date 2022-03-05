@@ -145,6 +145,11 @@ def get_loading_factor(product_name):
 
     return discount_loading_factors[product_name]
 
+def get_group_loading_factor(product_name):
+    if product_name in ['']
+     ('S', group_discount_loading_factor),    
+    ('T', group_discount_loading_factor),  
+
 def apply_price_loading_factors(skus, product_discount_list, products):
     final_price = 0
 
@@ -160,4 +165,5 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
     return final_price
+
 
