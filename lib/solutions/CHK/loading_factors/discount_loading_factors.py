@@ -1,10 +1,12 @@
+from typings import Dict
+
 from collections import OrderedDict
 from math import remainder
 from unittest import skipUnless
 
 from ..constants import PRODUCT_STOCK_PRICES
 
-def cross_product_loading_factor(skus, product_list, product, product_name, rules):
+def cross_product_loading_factor(skus: str, product_list: Dict[str, object], product: Dict[str, int], product_name: str, rules: list):
     """
     Cross product loading factor for calculating discounts across products
 
@@ -19,8 +21,11 @@ def cross_product_loading_factor(skus, product_list, product, product_name, rule
     product: Dict[str, int]
         Product list used for returning the current products price
 
-    product_name:
-        
+    product_name: str
+        The name of the product
+
+    rules: List
+        List of discount rules names to apply
 
     """
     number_of_products = skus.count(product_name)
@@ -53,7 +58,28 @@ def cross_product_loading_factor(skus, product_list, product, product_name, rule
 
     return price, skus
 
-def product_loading_factor_single_discount(skus, product_list, product, product_name, rule, **kwargs):
+def product_loading_factor_single_discount(skus, product_list, product, product_name, rule):
+    """
+    Single product loading factor for calculating discounts across products
+
+    Parameters
+    ----------
+    skus: str
+        String containing indiviudal product skus
+    
+    product_list: Dict[str, object]
+        Product discount list used for applying discounts
+
+    product: Dict[str, int]
+        Product list used for returning the current products price
+
+    product_name: str
+        The name of the product
+
+    rules: List
+        List of discount rules names to apply
+
+    """
     number_of_products = skus.count(product_name)
     product_price = product[product_name]
     product_discount_data_object = product_list[product_name][rule[0]]
@@ -77,7 +103,7 @@ def product_loading_factor_single_discount(skus, product_list, product, product_
 
     return price, skus
 
-def product_loading_factor_multiple_discount(skus, product_list, product, product_name, rules, **kwargs):
+def product_loading_factor_multiple_discount(skus, product_list, product, product_name, rules):
     number_of_products = skus.count(product_name)
     product_price = product[product_name]
     product_discount_data_object_a = product_list[product_name][rules[0]]
@@ -215,6 +241,7 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             final_price += product_price * product_quantity
 
     return final_price
+
 
 
 
