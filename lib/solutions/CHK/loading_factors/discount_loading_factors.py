@@ -138,7 +138,8 @@ def group_discount_loading_factor(skus, product_list, product, product_name, rul
             break
         group_skus = group_skus[int(3 * divisible):]
     
-    skus = group_skus
+    skus = skus.replace(group_skus, '', 1)
+    breakpoint()
 
     remainder_cost = 0
 
@@ -191,4 +192,5 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             final_price += product_price * product_quantity
     breakpoint()
     return final_price
+
 
