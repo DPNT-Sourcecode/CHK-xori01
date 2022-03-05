@@ -184,11 +184,30 @@ def test_q_discounts(skus, expected):
 
 @pytest.mark.parametrize("skus,expected", [
     ('RQ', 80),
-    ('R' * 2 + 'Q', 100),
+    ('R' * 2 + 'Q', 130),
     ('R' * 3 + 'Q', 150),
     ('R' * 4 + 'Q', 200),
+    ('R' * 6 + 'QQ', 300),
 ])
 def test_r_discounts(skus, expected):
+    assert checkout_solution.checkout(skus) == expected
+
+@pytest.mark.parametrize("skus,expected", [
+    ('U', 40),
+    ('U' * 2, 80),
+    ('U' * 3, 80),
+    ('U' * 4, 120),
+    ('U' * 5, 160),
+    ('U' * 6, 160),
+])
+def test_u_discounts(skus, expected):
+    assert checkout_solution.checkout(skus) == expected
+
+@pytest.mark.parametrize("skus,expected", [
+    ('V', 50),
+    ('V' * 2, 80),
+])
+def test_v_discounts(skus, expected):
     assert checkout_solution.checkout(skus) == expected
 
 def test_invalid_input_responds_as_expected():
@@ -197,12 +216,6 @@ def test_invalid_input_responds_as_expected():
 
     skus = 'AzB'
     assert checkout_solution.checkout(skus) == -1
-
-
-
-
-
-
 
 
 
