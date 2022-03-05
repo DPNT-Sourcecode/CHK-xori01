@@ -153,7 +153,7 @@ def group_discount_loading_factor(skus, product_list, product, product_name, rul
             result += ''
         else:
             result += sku
-
+    breakpoint()
     skus = result
     price = apply_discount + remainder_cost
     return price, skus
@@ -197,6 +197,7 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             final_price += product_price * product_quantity
 
     return final_price
+
 
 
 
