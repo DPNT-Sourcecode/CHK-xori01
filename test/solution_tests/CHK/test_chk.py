@@ -233,9 +233,11 @@ def test_group_discounts(skus, expected):
 
 def test_all_products():
     skus = ["".join(item) for item in PRODUCT_STOCK_PRICES.keys()]
-    products = sum(item for item in PRODUCT_STOCK_PRICES.values())
-    breakpoint()
-    pass
+    products_total = sum(item for item in PRODUCT_STOCK_PRICES.values())
+    assert checkout_solution.checkout(skus) == products_total
+    
+    skus = 'ABCDEFGHIJKLMNOPQRSTUVW'
+    assert checkout_solution.checkout(skus) == products_total
 
 
 def test_invalid_input_responds_as_expected():
@@ -244,6 +246,7 @@ def test_invalid_input_responds_as_expected():
 
     skus = 'AzB'
     assert checkout_solution.checkout(skus) == -1
+
 
 
 
