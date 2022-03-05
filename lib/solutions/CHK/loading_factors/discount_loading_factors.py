@@ -249,8 +249,8 @@ def group_discount_loading_factor(skus: str, product_list: Dict[str, object], pr
         if not item in in_groups:
             product_count += group_match_count
         if group_match_count > 0:
-            product_price = product[item]
-            tmp = { "key": item, 'value': product_price }
+            tmp_product_price = product[item]
+            tmp = { "key": item, 'value': tmp_product_price }
             groups.append(tmp)
 
     sort_in_customer_favour = sorted(groups, key=lambda item: item['value'], reverse=True)
@@ -272,7 +272,6 @@ def group_discount_loading_factor(skus: str, product_list: Dict[str, object], pr
     remainder_product_count = product_count - (applied_discount * discount_threshold)
     discount_to_apply = product_discount_data_object['discount']
     apply_discount = (applied_discount * product_price * discount_threshold) - (applied_discount * discount_to_apply)
-    breakpoint()
     group_skus = "".join(groups)
     clone_group_skus = group_skus
 
@@ -296,8 +295,6 @@ def group_discount_loading_factor(skus: str, product_list: Dict[str, object], pr
             result += ''
         else:
             result += sku
-
-    breakpoint()
 
     skus = result
     price = apply_discount + remainder_cost
@@ -376,6 +373,7 @@ def apply_price_loading_factors(skus: str, product_discount_list: Dict[str, obje
             final_price += product_price * product_quantity
 
     return final_price
+
 
 
 
