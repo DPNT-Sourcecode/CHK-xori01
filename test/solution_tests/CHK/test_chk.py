@@ -229,7 +229,7 @@ def test_v_discounts(skus, expected):
     # ('TTSZ', 66),
     # ('SXTZ', 66),
     # ('SXTZY', 86),
-    # ('ZSZSZ', 87),
+    ('ZSZSZ', 87),
     ('ZSZSZX', 90),
 ])
 def test_group_discounts(skus, expected):
