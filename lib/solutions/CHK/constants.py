@@ -33,6 +33,7 @@ DISCOUNT_LIST = {
             "count": 0,
             "discount": 0,
             "discount_threshold": 2,
+            "cross_product_name": "B",
         }
     },
     "A": {
@@ -59,6 +60,7 @@ DISCOUNT_LIST = {
             "count": 0,
             "discount": 0,
             "discount_threshold": 3,
+            "cross_product_name": "F",
         }
     },
     "H": {
@@ -81,4 +83,5 @@ DISCOUNT_LIST = {
         },
     },
 }
+
 

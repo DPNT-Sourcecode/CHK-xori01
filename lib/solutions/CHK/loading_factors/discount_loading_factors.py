@@ -4,28 +4,28 @@ from math import remainder
 from ..constants import PRODUCT_STOCK_PRICES
 
 def cross_product_loading_factor(skus, product_list, product, product_name, rules):
-    number_e_products = skus.count("E")
-    number_b_products = skus.count("B")
+    number_of_products = skus.count(product_name)
+    product_price = product[product_name]
+    product_discount_data_object = product_list[product_name][rules[0]]
+    cross_product_count = skus.count(product_discount_data_object['cross_product_name'])
 
-    product_price = product['E']
-    product_discount_2e = product_list['E']['2']
 
-    e2 = product_discount_2e['discount_threshold']
+    discount_threshold = product_discount_data_object['discount_threshold']
 
-    while number_e_products > 0:
-        if number_e_products > 0 and number_e_products % e2 == 0:
-            if number_b_products > 0:
+    while number_of_products > 0:
+        if number_of_products > 0 and number_of_products % discount_threshold == 0:
+            if cross_product_count > 0:
                 skus = skus.replace('B', '', 1)
             
-            product_discount_2e['count'] += 1
-            number_e_products -= e2
+            product_discount_data_object['count'] += 1
+            number_of_products -= discount_threshold
         else:
-            number_e_products -= 1
+            number_of_products -= 1
 
     
-    e2_applied_count = product_discount_2e['count']
+    applied_discount_count = product_discount_data_object['count']
 
-    remainder_product_count = skus.count('E') - (e2_applied_count * e2) 
+    remainder_product_count = skus.count('E') - (applied_discount_count * e2) 
 
     apply_b2_discount = (e2_applied_count * product_price * e2)
 
@@ -122,5 +122,6 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
     return final_price
+
 
 
