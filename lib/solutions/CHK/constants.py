@@ -113,10 +113,10 @@ DISCOUNT_LIST = {
         }
     },
     'U': {
-         "3": {
+         "4": {
             "count": 0,
             "discount": 0,
-            "discount_threshold": 3,
+            "discount_threshold": 4,
             "cross_product_name": "U",
         }
     },

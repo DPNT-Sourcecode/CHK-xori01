@@ -195,10 +195,9 @@ def test_r_discounts(skus, expected):
 @pytest.mark.parametrize("skus,expected", [
     ('U', 40),
     ('U' * 2, 80),
-    ('U' * 3, 80),
+    ('U' * 3, 120),
     ('U' * 4, 120),
     ('U' * 5, 160),
-    ('U' * 6, 160),
 ])
 def test_u_discounts(skus, expected):
     assert checkout_solution.checkout(skus) == expected
@@ -218,6 +217,7 @@ def test_invalid_input_responds_as_expected():
 
     skus = 'AzB'
     assert checkout_solution.checkout(skus) == -1
+
 
 
 
