@@ -198,36 +198,38 @@ def product_loading_factor_one_discount(skus, product_list, product, product_nam
 
     return price, skus
 
-def product_multi_deal_loading_factor(skus, product_list, product, product_name, rule):
+def product_multi_deal_loading_factor(skus, product_list, product, product_name, rules):
     number_of_products = skus.count(product_name)
     product_price = product[product_name]
     discount_list = []
     remainder_product_count = 0
 
-    product_discount_data_object = product_list[product_name][rule]
+    for rule in rules:
+        product_discount_data_object = product_list[product_name][rule]
+        discount_threshold = product_discount_data_object['discount_threshold']
+        while number_of_products > 0:
+            prioritise_first_discount = number_of_products % discount_threshold
+            breakpoint()
+            
+            if prioritise_first_discount == 0:
+                product_discount_data_object['count'] += 1
+                number_of_products -= discount_threshold
+            elif number_of_products > 0 and prioritise_first_discount == discount_threshold:
+                product_discount_data_object['count'] += 1
+                number_of_products -= discount_threshold
+            else:
+                number_of_products -= 1
 
-    discount_threshold = product_discount_data_object['discount_threshold']
-
-    while number_of_products > 0:
-        prioritise_first_discount = number_of_products % discount_threshold
+        applied_discount = product_discount_data_object['count']
         breakpoint()
-        
-        if prioritise_first_discount == 0:
-            product_discount_data_object['count'] += 1
-            number_of_products -= discount_threshold
-        elif number_of_products > 0 and prioritise_first_discount == discount_threshold:
-            product_discount_data_object['count'] += 1
-            number_of_products -= discount_threshold
-        else:
-            number_of_products -= 1
 
-    applied_discount = product_discount_data_object['count']
+        remainder_product_count += skus.count(product_name) - (applied_discount * discount_threshold) 
 
-    remainder_product_count += skus.count(product_name) - (applied_discount * discount_threshold) 
+        apply_discount = (applied_discount * product_price * discount_threshold) - (applied_discount * product_discount_data_object['discount'])
 
-    apply_discount = (applied_discount * product_price * discount_threshold) - (applied_discount * product_discount_data_object['discount'])
+        discount_list.append(apply_discount)
 
-    discount_list.append(apply_discount)
+    breakpoint()
 
     price = 0
 
@@ -258,17 +260,17 @@ def apply_price_loading_factors(skus, product_discount_list, products):
         try:
             discount_loading_factor = get_loading_factor(item)
             rules = product_discount_list[item].keys()
-            for rule in product_discount_list[item].keys():
-                if item in ['K', 'A']:
-                    price, updated_skus = discount_loading_factor(skus, product_discount_list, products, item, rule)
-                    breakpoint()
-                else:
-                    price, updated_skus = discount_loading_factor(skus, product_discount_list, products)
-                skus = updated_skus
-                final_price += price
+            if item in ['K', 'A']:
+                price, updated_skus = discount_loading_factor(skus, product_discount_list, products, item, rules)
+                breakpoint()
+            else:
+                price, updated_skus = discount_loading_factor(skus, product_discount_list, products)
+            skus = updated_skus
+            final_price += price
         except KeyError:
             product_price = products[item]
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
     return final_price
+
 
