@@ -132,4 +132,10 @@ DISCOUNT_LIST = {
             "discount_threshold": 2,
         },
     },
+    'S': {
+        '3': {
+            "count": 0,
+            "discount_group": ['S','T','X','Y','Z']
+        }
+    }
 }
