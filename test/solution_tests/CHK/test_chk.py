@@ -213,7 +213,7 @@ def test_v_discounts(skus, expected):
     assert checkout_solution.checkout(skus) == expected
 
 @pytest.mark.parametrize("skus,expected", [
-    ('S', 20),
+    ('SS', 40),
     # ('SST', 45),
     # ('SSX', 45),
     # ('SSZ', 45),
@@ -235,6 +235,7 @@ def test_invalid_input_responds_as_expected():
 
     skus = 'AzB'
     assert checkout_solution.checkout(skus) == -1
+
 
 
 

@@ -126,14 +126,16 @@ def group_discount_loading_factor(skus, product_list, product, product_name, rul
     apply_discount = (applied_discount * product_price * discount_threshold) - (applied_discount * discount_to_apply)
 
     group_skus = "".join(groups)
-    skus = group_skus[3:] if len(group_skus) > 2 else group_skus[1:]
+    skus = group_skus[3:] if len(group_skus) > 2 else skus
 
     remainder_cost = 0
 
     if len(skus) > 0:
         for index in range(remainder_product_count):
+            breakpoint()
             remaining_product_name = skus[index]
             remainder_cost += (1 * product[remaining_product_name])
+            skus = group_skus[1:]
         
     breakpoint()
     price = apply_discount + remainder_cost
@@ -174,3 +176,4 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
     return final_price
+
