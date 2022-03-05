@@ -210,8 +210,8 @@ def test_v_discounts(skus, expected):
 
 @pytest.mark.parametrize("skus,expected", [
     # ('S', 20),
-    ('SS', 40),
-    ('SST', 45),
+    # ('SS', 40),
+    # ('SST', 45),
     # ('SSX', 45),
     # ('SSZ', 45),
     # ('SSX', 45),
@@ -221,7 +221,7 @@ def test_v_discounts(skus, expected):
     # ('SSZ', 45),
     # ('ZZZ', 45),
     # ('ZZS', 45),
-    # ('ZZSZ', 66),
+    ('ZZSZ', 66),
     # ('TTSZ', 66),
     # ('SXTZ', 66),
     # ('SXTZY', 86),
@@ -248,6 +248,7 @@ def test_invalid_input_responds_as_expected():
 
     skus = 'AzB'
     assert checkout_solution.checkout(skus) == -1
+
 
 
 
