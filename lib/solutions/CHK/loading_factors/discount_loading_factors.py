@@ -111,6 +111,7 @@ def group_discount_loading_factor(skus, product_list, product, product_name, rul
     groups = []
 
     for group in group_discount_list:
+        breakpoint()
         group_match_count = skus.count(group)
         product_count += group_match_count
         if group_match_count > 0: groups.append(group * group_match_count)
@@ -125,6 +126,8 @@ def group_discount_loading_factor(skus, product_list, product, product_name, rul
 
     for group in group_discount_list:
         product_count += skus.count(group)
+
+    breakpoint()
 
     remainder_product_count = product_count - (applied_discount * discount_threshold)
     discount_to_apply = product_discount_data_object['discount']
@@ -192,9 +195,3 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             final_price += product_price * product_quantity
 
     return final_price
-
-
-
-
-
-
