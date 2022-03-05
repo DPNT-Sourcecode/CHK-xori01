@@ -138,8 +138,8 @@ def test_h_discounts(skus, expected):
     ('K' * 2, (PRODUCT_STOCK_PRICES['K'] * 2) - 20),
     ('K' * 3, (PRODUCT_STOCK_PRICES['K'] * 3) - 20),
     ('K' * 4, (PRODUCT_STOCK_PRICES['K'] * 4) - 40),
-    ('K' * 2 + 'AA' + 'B', 150 + 100 + 30),
-    ('K' * 4 + 'AAA' + 'BB', 300 + 130 + 45),
+    ('K' * 2 + 'AA' + 'B', (PRODUCT_STOCK_PRICES['K'] * 2) - 20 + 100 + 30),
+    ('K' * 4 + 'AAA' + 'BB', (PRODUCT_STOCK_PRICES['K'] * 4) - 40 + 130 + 45),
 ])
 def test_k_discounts(skus, expected):
     assert checkout_solution.checkout(skus) == expected
@@ -232,6 +232,9 @@ def test_group_discounts(skus, expected):
     assert checkout_solution.checkout(skus) == expected
 
 def test_all_products():
+    skus = ["".join(item) for item in PRODUCT_STOCK_PRICES.keys()]
+    products = sum(item for item in PRODUCT_STOCK_PRICES.values())
+    breakpoint()
     pass
 
 
@@ -241,6 +244,7 @@ def test_invalid_input_responds_as_expected():
 
     skus = 'AzB'
     assert checkout_solution.checkout(skus) == -1
+
 
 
 
