@@ -127,15 +127,15 @@ def test_F_product_discounts():
     ('H' * 8, (PRODUCT_STOCK_PRICES['H'] * 8) - 5),
     ('H' * 9, (PRODUCT_STOCK_PRICES['H'] * 9) - 5),
     ('H' * 10, (PRODUCT_STOCK_PRICES['H'] * 10) - 20),
-    ('H' * 10 + 'AA' + 'B', (PRODUCT_STOCK_PRICES['H'] * 10) + (PRODUCT_STOCK_PRICES['A'] * 2) + (PRODUCT_STOCK_PRICES['B'])),
-    ('H' * 10 + 'AAA' + 'BB', 80 + 130 + 45),
+    ('H' * 10 + 'AA' + 'B', ((PRODUCT_STOCK_PRICES['H'] * 10) - 20) + (PRODUCT_STOCK_PRICES['A'] * 2) + (PRODUCT_STOCK_PRICES['B'])),
+    ('H' * 10 + 'AAA' + 'BB', ((PRODUCT_STOCK_PRICES['H'] * 10) - 20) + ((PRODUCT_STOCK_PRICES['A'] * 3) - 20) + (PRODUCT_STOCK_PRICES['B'] * 2 - 15)),
 ])
 def test_h_discounts(skus, expected):
     assert checkout_solution.checkout(skus) == expected
 
 @pytest.mark.parametrize("skus,expected", [
-    ('K', 80),
-    ('K' * 2, 150),
+    ('K', PRODUCT_STOCK_PRICES['K']),
+    ('K' * 2, (PRODUCT_STOCK_PRICES['K'] * 2) - 20),
     ('K' * 3, 150 + 80),
     ('K' * 4, 300),
     ('K' * 5, 300 + 80),
@@ -228,6 +228,7 @@ def test_invalid_input_responds_as_expected():
 
     skus = 'AzB'
     assert checkout_solution.checkout(skus) == -1
+
 
 
 
