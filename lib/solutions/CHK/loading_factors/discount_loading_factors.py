@@ -83,6 +83,8 @@ def product_loading_factor_multiple_discount(skus, product_list, product, produc
     discount_rule_a_count = product_discount_data_object_a['count']
     discount_rule_b_count = product_discount_data_object_b['count']
 
+    breakpoint()
+
     remainder_product_count = skus.count(product_name) - (discount_rule_a_count * discount_threshold_a + discount_rule_b_count * discount_threshold_b) 
 
     discount_to_apply_a = product_discount_data_object_a['discount']
@@ -183,5 +185,6 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
     return final_price
+
 
 
