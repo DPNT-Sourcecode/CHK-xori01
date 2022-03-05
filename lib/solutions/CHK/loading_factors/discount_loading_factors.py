@@ -103,9 +103,13 @@ def group_discount_loading_factor(skus, product_list, product, product_name, rul
     discount_threshold = product_discount_data_object['discount_threshold']
 
     product_count = 0
+    groups = []
 
     for group in group_discount_list:
-        product_count += skus.count(group)
+        group_match_count = skus.count(group)
+        product_count += group_match_count
+        if 
+        groups.append(group)
     while product_count > 0:
         if product_count > 0 and product_count % discount_threshold == 0:
             product_discount_data_object['count'] += 1
@@ -138,16 +142,12 @@ def get_loading_factor(product_name):
         ('Q', product_loading_factor_single_discount),
         ('R', cross_product_loading_factor),
         ('U', cross_product_loading_factor),
-        ('V', product_loading_factor_multiple_discount),   
+        ('V', product_loading_factor_multiple_discount),
+        ('S', group_discount_loading_factor),
+        ('T', group_discount_loading_factor),
     ])
 
     return discount_loading_factors[product_name]
-
-def get_group_loading_factor(product_name, skus):
-    count = sum(skus.count(item) for item in ['S','T','X','Y','Z'])
-    if count % 3 == 0:
-        breakpoint()
-        return group_discount_loading_factor
 
 def apply_price_loading_factors(skus, product_discount_list, products):
     final_price = 0
@@ -160,19 +160,11 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             skus = updated_skus
             final_price += price
         except KeyError:
-            try:
-                group_discount_loading_factor = get_group_loading_factor(item, skus)
-                group_rules = list(product_discount_list[item].keys())
-                group_discount_price, group_updated_skus = group_discount_loading_factor(skus, product_discount_list, products, item, group_rules)
-                breakpoint()
-                skus = group_updated_skus
-                final_price += group_discount_price
-            except KeyError:
-                pass
             product_price = products[item]
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
     return final_price
+
 
 
 
