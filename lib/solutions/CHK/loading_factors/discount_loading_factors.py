@@ -248,6 +248,9 @@ def group_discount_loading_factor(skus: str, product_list: Dict[str, object], pr
         if not item in groups:
             product_count += group_match_count
         if group_match_count > 0:
+            tmp = dict(
+                
+            )
             groups.append(item)
 
     while product_count > 0:
@@ -293,7 +296,7 @@ def group_discount_loading_factor(skus: str, product_list: Dict[str, object], pr
 
     skus = result
     price = apply_discount + remainder_cost
-    breakpoint()
+
     return price, skus
 
 def get_loading_factor(product_name: str):
@@ -368,3 +371,4 @@ def apply_price_loading_factors(skus: str, product_discount_list: Dict[str, obje
             final_price += product_price * product_quantity
 
     return final_price
+
