@@ -138,17 +138,14 @@ def get_loading_factor(product_name):
         ('Q', product_loading_factor_single_discount),
         ('R', cross_product_loading_factor),
         ('U', cross_product_loading_factor),
-        ('V', product_loading_factor_multiple_discount),
-        ('S', group_discount_loading_factor),    
-        ('T', group_discount_loading_factor),    
+        ('V', product_loading_factor_multiple_discount),   
     ])
 
     return discount_loading_factors[product_name]
 
 def get_group_loading_factor(product_name):
-    if product_name in ['']
-     ('S', group_discount_loading_factor),    
-    ('T', group_discount_loading_factor),  
+    if product_name in ['S','T','X','Y','Z']:
+        return group_discount_loading_factor
 
 def apply_price_loading_factors(skus, product_discount_list, products):
     final_price = 0
@@ -160,10 +157,20 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             price, updated_skus = discount_loading_factor(skus, product_discount_list, products, item, rules)
             skus = updated_skus
             final_price += price
-        except KeyError as e:
+        except KeyError:
+            try:
+                group_discount_loading_factor = get_group_loading_factor(item)
+                rules = list(product_discount_list[item].keys())
+                group_discount_price, updated_skus = group_discount_loading_factor(skus, product_discount_list, products, item, rules)
+                breakpoint()
+                skus = updated_skus
+                final_price += group_discount_price
+            except KeyError:
+                pass
             product_price = products[item]
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
     return final_price
+
 
 
