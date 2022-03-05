@@ -1,7 +1,7 @@
 import pytest
 
 from solutions.CHK import checkout_solution
-from solution_tests.CHK 
+from solutions.CHK.constants import PRODUCT_STOCK_PRICES
 
 def test_checkout_solution_sums_without_discount():
     skus = 'A'
@@ -118,16 +118,16 @@ def test_F_product_discounts():
 
 @pytest.mark.parametrize("skus,expected", [
     ('H', PRODUCT_STOCK_PRICES['H']),
-    ('H' * 2, 20),
-    ('H' * 3, 30),
-    ('H' * 4, 40),
-    ('H' * 5, 45),
-    ('H' * 6, 55),
-    ('H' * 7, 65),
-    ('H' * 8, 75),
-    ('H' * 9, 85),
-    ('H' * 10, 80),
-    ('H' * 10 + 'AA' + 'B', 80 + 100 + 30),
+    ('H' * 2, PRODUCT_STOCK_PRICES['H'] * 2),
+    ('H' * 3, PRODUCT_STOCK_PRICES['H'] * 3),
+    ('H' * 4, PRODUCT_STOCK_PRICES['H'] * 4),
+    ('H' * 5, (PRODUCT_STOCK_PRICES['H'] * 5) - 5),
+    ('H' * 6, (PRODUCT_STOCK_PRICES['H'] * 6) - 5),
+    ('H' * 7, (PRODUCT_STOCK_PRICES['H'] * 7) - 5),
+    ('H' * 8, (PRODUCT_STOCK_PRICES['H'] * 8) - 5),
+    ('H' * 9, (PRODUCT_STOCK_PRICES['H'] * 9) - 5),
+    ('H' * 10, (PRODUCT_STOCK_PRICES['H'] * 10) - 20),
+    ('H' * 10 + 'AA' + 'B', (PRODUCT_STOCK_PRICES['H'] * 10) + (PRODUCT_STOCK_PRICES['A'] * 2) + (PRODUCT_STOCK_PRICES['B'])),
     ('H' * 10 + 'AAA' + 'BB', 80 + 130 + 45),
 ])
 def test_h_discounts(skus, expected):
@@ -228,6 +228,7 @@ def test_invalid_input_responds_as_expected():
 
     skus = 'AzB'
     assert checkout_solution.checkout(skus) == -1
+
 
 
 
