@@ -253,8 +253,6 @@ def group_discount_loading_factor(skus: str, product_list: Dict[str, object], pr
             tmp = { "key": item, 'value': product_price }
             groups.append(tmp)
 
-    breakpoint()
-
     sort_in_customer_favour = sorted(groups, key=lambda item: item['value'], reverse=True)
     groups = [item['key'] for item in sort_in_customer_favour]
 
@@ -298,6 +296,8 @@ def group_discount_loading_factor(skus: str, product_list: Dict[str, object], pr
             result += ''
         else:
             result += sku
+
+    breakpoint()
 
     skus = result
     price = apply_discount + remainder_cost
@@ -376,6 +376,7 @@ def apply_price_loading_factors(skus: str, product_discount_list: Dict[str, obje
             final_price += product_price * product_quantity
 
     return final_price
+
 
 
 
