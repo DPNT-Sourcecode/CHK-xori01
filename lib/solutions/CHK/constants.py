@@ -1,10 +1,13 @@
 PRODUCT_STOCK_PRICES = {
     'E': 40,
+    'F': 10,
+    'N': 40,
+    'R': 50,
+    'U': 40,
     'A': 50,
     'B': 30,
     'C': 20,
     'D': 15,
-    'F': 10,
     'G': 20,
     'H': 10,
     'I': 35,
@@ -12,14 +15,11 @@ PRODUCT_STOCK_PRICES = {
     'K': 80,
     'L': 90,
     'M': 15,
-    'N': 40,
     'O': 10,
     'P': 50,
     'Q': 30,
-    'R': 50,
     'S': 30,
     'T': 20,
-    'U': 40,
     'V': 50,
     'W': 20,
     'X': 90,
@@ -112,6 +112,27 @@ DISCOUNT_LIST = {
             "cross_product_name": "Q",
         }
     },
+    'U': {
+         "3": {
+            "count": 0,
+            "discount": 0,
+            "discount_threshold": 3,
+            "cross_product_name": "U",
+        }
+    },
+    "V": {
+        "3": {
+            "count": 0,
+            "discount": 20,
+            "discount_threshold": 3,
+        },
+        "2": {
+            "count": 0,
+            "discount": 10,
+            "discount_threshold": 2,
+        },
+    },
 }
+
 
 
