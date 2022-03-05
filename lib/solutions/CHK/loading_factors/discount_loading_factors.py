@@ -46,14 +46,12 @@ def product_loading_factor_single_discount(skus, product_list, product, product_
             number_of_products -= discount_threshold
         else:
             number_of_products -= 1
-
-    breakpoint()
     
     applied_discount = product_discount_data_object['count']
 
-    remainder_product_count = skus.count(product_name) - (applied_discount * discount_threshold) 
-
-    apply_discount = (applied_discount * product_price * discount_threshold) - (applied_discount * 10)
+    remainder_product_count = skus.count(product_name) - (applied_discount * discount_threshold)
+    discount_to_apply = product_discount_data_object['discount']
+    apply_discount = (applied_discount * product_price * discount_threshold) - (applied_discount * discount_to_apply)
 
     price = apply_discount + (remainder_product_count * product_price)
 
@@ -124,3 +122,4 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
     return final_price
+

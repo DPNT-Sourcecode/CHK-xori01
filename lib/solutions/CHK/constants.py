@@ -50,7 +50,7 @@ DISCOUNT_LIST = {
     "B": {
         "2": {
             "count": 0,
-            "discount": 0,
+            "discount": 15,
             "discount_threshold": 2,
         }
     },
@@ -64,19 +64,19 @@ DISCOUNT_LIST = {
     "H": {
         "5": {
             "count": 0,
-            "discount": 0,
+            "discount": 5,
             "discount_threshold": 5,
         },
         "10": {
             "count": 0,
-            "discount": 0,
+            "discount": 20,
             "discount_threshold": 10,
         },
     },
     "K": {
          "2": {
             "count": 0,
-            "discount": 0,
+            "discount": 10,
             "discount_threshold": 2,
         },
     },

@@ -7,43 +7,43 @@ from solutions.CHK import checkout_solution, InvalidInputException
 #     assert checkout_solution.checkout(skus) == 50
 
 def test_checkout_solution_sums_with_discounts():
-#     skus = 'AA'
-#     assert checkout_solution.checkout(skus) == 100
+    skus = 'AA'
+    assert checkout_solution.checkout(skus) == 100
 
-#     skus = 'AAA'
-#     assert checkout_solution.checkout(skus) == 130
+    skus = 'AAA'
+    assert checkout_solution.checkout(skus) == 130
 
-#     skus = 'AAAA'
-#     assert checkout_solution.checkout(skus) == 180
+    skus = 'AAAA'
+    assert checkout_solution.checkout(skus) == 180
 
-#     skus = 'AAAAA'
-#     assert checkout_solution.checkout(skus) == 200
+    skus = 'AAAAA'
+    assert checkout_solution.checkout(skus) == 200
 
-#     skus = 'AAAAAA'
-#     assert checkout_solution.checkout(skus) == 250
+    skus = 'AAAAAA'
+    assert checkout_solution.checkout(skus) == 250
 
-#     skus = 'AAAAAAA' # 7
-#     assert checkout_solution.checkout(skus) == 300
+    skus = 'AAAAAAA' # 7
+    assert checkout_solution.checkout(skus) == 300
 
 
-#     skus = 'AAAAAAAA' # 8
-#     assert checkout_solution.checkout(skus) == 330
+    skus = 'AAAAAAAA' # 8
+    assert checkout_solution.checkout(skus) == 330
 
-#     skus = 'AAAAAAAAA' # 9
-#     assert checkout_solution.checkout(skus) == 380
+    skus = 'AAAAAAAAA' # 9
+    assert checkout_solution.checkout(skus) == 380
 
-#     skus = 'AAAAAAAAAA' # 10
-#     assert checkout_solution.checkout(skus) == 400
+    skus = 'AAAAAAAAAA' # 10
+    assert checkout_solution.checkout(skus) == 400
 
     skus = 'AAABB'
     expected_A_cost = 130
     expected_B_cost= 45
     assert checkout_solution.checkout(skus) == (expected_A_cost + expected_B_cost)
 
-    # skus = 'AAAB'
-    # expected_A_cost = 130
-    # expected_B_cost= 30
-    # assert checkout_solution.checkout(skus) == (expected_A_cost + expected_B_cost)
+    skus = 'AAAB'
+    expected_A_cost = 130
+    expected_B_cost= 30
+    assert checkout_solution.checkout(skus) == (expected_A_cost + expected_B_cost)
 
 def test_B_product_discounts():
     skus = 'BB'
@@ -126,8 +126,8 @@ def test_F_product_discounts():
     ('H' * 8, 75),
     ('H' * 9, 85),
     ('H' * 10, 80),
-    ('H' * 10 + 'AA' + 'B', 80 + 100 + 30),
-    ('H' * 10 + 'AAA' + 'BB', 80 + 130 + 45),
+    # ('H' * 10 + 'AA' + 'B', 80 + 100 + 30),
+    # ('H' * 10 + 'AAA' + 'BB', 80 + 130 + 45),
 ])
 def test_h_discounts(skus, expected):
     assert checkout_solution.checkout(skus) == expected
@@ -154,6 +154,7 @@ def test_invalid_input_responds_as_expected():
 
     skus = 'AzB'
     assert checkout_solution.checkout(skus) == -1
+
 
 
 
