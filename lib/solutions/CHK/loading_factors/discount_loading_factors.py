@@ -104,10 +104,11 @@ def get_loading_factor(product_name):
         ('H', product_loading_factor_multiple_discount),
         ('K', product_loading_factor_single_discount),
         ('N', cross_product_loading_factor),
-        ('K', product_loading_factor_single_discount),
-        ('K', product_loading_factor_single_discount),
-        ('K', product_loading_factor_single_discount),
-        
+        ('P', product_loading_factor_single_discount),
+        ('Q', product_loading_factor_single_discount),
+        ('R', cross_product_loading_factor),
+        ('U', cross_product_loading_factor),
+        ('V', product_loading_factor_multiple_discount),        
     ])
 
     return discount_loading_factors[product_name]
@@ -127,6 +128,7 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
     return final_price
+
 
 
 
