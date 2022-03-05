@@ -42,11 +42,12 @@ def product_loading_factor_single_discount(skus, product_list, product, product_
 
     while number_of_products > 0:
         if number_of_products > 0 and number_of_products % discount_threshold == 0:
-            product_list['K']['2']['count'] += 1
+            product_discount_data_object['count'] += 1
             number_of_products -= discount_threshold
         else:
             number_of_products -= 1
 
+    breakpoint()
     
     applied_discount = product_discount_data_object['count']
 
@@ -123,12 +124,3 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
     return final_price
-
-
-
-
-
-
-
-
-
