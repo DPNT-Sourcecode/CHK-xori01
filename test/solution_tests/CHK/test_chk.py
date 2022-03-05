@@ -136,14 +136,14 @@ def test_h_discounts(skus, expected):
 @pytest.mark.parametrize("skus,expected", [
     ('K', PRODUCT_STOCK_PRICES['K']),
     ('K' * 2, (PRODUCT_STOCK_PRICES['K'] * 2) - 20),
-    # ('K' * 3, 150 + 80),
-    # ('K' * 4, 300),
-    # ('K' * 5, 300 + 80),
-    # ('K' * 6, 450),
-    # ('K' * 7, 450 + 80),
-    # ('K' * 8, 600),
-    # ('K' * 2 + 'AA' + 'B', 150 + 100 + 30),
-    # ('K' * 4 + 'AAA' + 'BB', 300 + 130 + 45),
+    ('K' * 3, 150 + 80),
+    ('K' * 4, 300),
+    ('K' * 5, 300 + 80),
+    ('K' * 6, 450),
+    ('K' * 7, 450 + 80),
+    ('K' * 8, 600),
+    ('K' * 2 + 'AA' + 'B', 150 + 100 + 30),
+    ('K' * 4 + 'AAA' + 'BB', 300 + 130 + 45),
 ])
 def test_k_discounts(skus, expected):
     assert checkout_solution.checkout(skus) == expected
@@ -213,27 +213,30 @@ def test_v_discounts(skus, expected):
     assert checkout_solution.checkout(skus) == expected
 
 @pytest.mark.parametrize("skus,expected", [
-    # ('S', 20),
-    # ('SS', 40),
-    # ('SST', 45),
-    # ('SSX', 45),
-    # ('SSZ', 45),
-    # ('SSX', 45),
-    # ('SSY', 45),
-    # ('STY', 45),
-    # ('SXY', 45),
-    # ('SSZ', 45),
-    # ('ZZZ', 45),
-    # ('ZZS', 45),
-    # ('ZZSZ', 66),
-    # ('TTSZ', 66),
-    # ('SXTZ', 66),
-    # ('SXTZY', 86),
+    ('S', 20),
+    ('SS', 40),
+    ('SST', 45),
+    ('SSX', 45),
+    ('SSZ', 45),
+    ('SSX', 45),
+    ('SSY', 45),
+    ('STY', 45),
+    ('SXY', 45),
+    ('SSZ', 45),
+    ('ZZZ', 45),
+    ('ZZS', 45),
+    ('ZZSZ', 66),
+    ('TTSZ', 66),
+    ('SXTZ', 66),
+    ('SXTZY', 86),
     ('ZSZSZ', 87),
-    # ('ZSZSZX', 90),
+    ('ZSZSZX', 90),
 ])
 def test_group_discounts(skus, expected):
     assert checkout_solution.checkout(skus) == expected
+
+def test_all_products():
+    pass
 
 
 def test_invalid_input_responds_as_expected():
@@ -242,6 +245,7 @@ def test_invalid_input_responds_as_expected():
 
     skus = 'AzB'
     assert checkout_solution.checkout(skus) == -1
+
 
 
 
