@@ -12,7 +12,7 @@ class InvalidInputException(Exception):
 
 
 
-def checkout(skus):
+def checkout(skus: str) -> int:
     """
     Main checkout function
 
@@ -20,7 +20,16 @@ def checkout(skus):
     ----------
 
     skus: str <unicode string>
-        
+        String containing indiviudal product skus
+
+    Returns:
+    -------
+
+    int:
+        Returns -1 if invalid input is detected
+
+    int:
+        Returns a calculation taking into account active discounts
 
     """
     try:
@@ -39,4 +48,5 @@ def checkout(skus):
 
     except InvalidInputException:
         return -1
+
 

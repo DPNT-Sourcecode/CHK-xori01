@@ -5,6 +5,24 @@ from unittest import skipUnless
 from ..constants import PRODUCT_STOCK_PRICES
 
 def cross_product_loading_factor(skus, product_list, product, product_name, rules):
+    """
+    Cross product loading factor for calculating discounts across products
+
+    Parameters
+    ----------
+    skus: str
+        String containing indiviudal product skus
+    
+    product_list: Dict[str, object]
+        Product discount list used for applying discounts
+
+    product: Dict[str, int]
+        Product list used for returning the current products price
+
+    product_name:
+        
+
+    """
     number_of_products = skus.count(product_name)
     product_price = product[product_name]
     product_discount_data_object = product_list[product_name][rules[0]]
@@ -197,6 +215,7 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             final_price += product_price * product_quantity
 
     return final_price
+
 
 
 
