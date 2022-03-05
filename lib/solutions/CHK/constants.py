@@ -93,7 +93,7 @@ DISCOUNT_LIST = {
     'P': {
          "5": {
             "count": 0,
-            "discount": 200,
+            "discount": 50,
             "discount_threshold": 5,
         }
     },
@@ -133,6 +133,7 @@ DISCOUNT_LIST = {
         },
     },
 }
+
 
 
 

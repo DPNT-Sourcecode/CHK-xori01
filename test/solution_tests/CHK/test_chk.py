@@ -153,9 +153,20 @@ def test_k_discounts(skus, expected):
     ('N' * 3, 120),
     ('N' * 3 + 'M', 120),
     ('N' * 3 + 'MM', 135),
-    ('N' * 3 + 'MM', 135),
+    ('N' * 6 + 'MM', 240),
+    ('N' * 6 + 'MM' + 'AAA', 240 + 130),
 ])
 def test_n_discounts(skus, expected):
+    assert checkout_solution.checkout(skus) == expected
+
+@pytest.mark.parametrize("skus,expected", [
+    ('P', 50),
+    ('P' * 2, 100),
+    ('P' * 3, 150),
+    ('P' * 4, 200),
+    ('P' * 5, 200),
+])
+def test_p_discounts(skus, expected):
     assert checkout_solution.checkout(skus) == expected
 
 
@@ -165,6 +176,7 @@ def test_invalid_input_responds_as_expected():
 
     skus = 'AzB'
     assert checkout_solution.checkout(skus) == -1
+
 
 
 
