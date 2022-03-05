@@ -219,10 +219,20 @@ def group_discount_loading_factor(skus: str, product_list: Dict[str, object], pr
             Updated skus list
 
     """
-
-    matched_list = [characters in ['S','T','X','Y','Z'] for characters in skus]
-    if not any(matched_list):
-        return 0, skus
+    
+    tmp = [character for character in skus if character in ['S','T','X','Y','Z']]
+    if len(tmp) <= 2:
+        tmp_price = 0
+        for item in tmp:
+            tmp_price += product[item]
+            result = ''
+            for sku in skus:
+                if sku in "".join(tmp):
+                    result += ''
+                else:
+                    result += sku
+            skus = result
+        return tmp_price, skus
 
     product_price = product[product_name]
     product_discount_data_object = product_list[product_name][rules[0]]
@@ -233,34 +243,34 @@ def group_discount_loading_factor(skus: str, product_list: Dict[str, object], pr
     product_count = 0
     groups = []
 
-    for group in group_discount_list:
-        t = ''
-        group_match_count = skus.count(group)
-        breakpoint()
-        product_count += group_match_count
+    for item in [characters for characters in skus if characters in group_discount_list]:
+        group_match_count = skus.count(item)
+        if not item in groups:
+            product_count += group_match_count
         if group_match_count > 0:
-            t.
-            groups.append(group * group_match_count)
+            groups.append(item)
+
     while product_count > 0:
         if product_count > 0 and product_count % discount_threshold == 0:
             product_discount_data_object['count'] += 1
             product_count -= discount_threshold
         else:
             product_count -= 1
-        
+
     applied_discount = product_discount_data_object['count']
 
     for group in group_discount_list:
         product_count += skus.count(group)
+    
 
     remainder_product_count = product_count - (applied_discount * discount_threshold)
     discount_to_apply = product_discount_data_object['discount']
     apply_discount = (applied_discount * product_price * discount_threshold) - (applied_discount * discount_to_apply)
-
+    
     group_skus = "".join(groups)
     clone_group_skus = group_skus
-    divisible = len(group_skus[0:3]) / 3
 
+    divisible = len(group_skus[0:3]) / 3
 
     while divisible.is_integer():
         if len(clone_group_skus) < 3:
@@ -283,6 +293,7 @@ def group_discount_loading_factor(skus: str, product_list: Dict[str, object], pr
 
     skus = result
     price = apply_discount + remainder_cost
+    breakpoint()
     return price, skus
 
 def get_loading_factor(product_name: str):
@@ -357,6 +368,3 @@ def apply_price_loading_factors(skus: str, product_discount_list: Dict[str, obje
             final_price += product_price * product_quantity
 
     return final_price
-
-
-
