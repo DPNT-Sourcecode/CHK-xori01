@@ -13,6 +13,16 @@ class InvalidInputException(Exception):
 
 
 def checkout(skus):
+    """
+    Main checkout function
+
+    Parameters
+    ----------
+
+    skus: str <unicode string>
+        
+
+    """
     try:
         allowed_choices = ["".join(key) for key in PRODUCT_STOCK_PRICES.keys()]
 
@@ -29,3 +39,4 @@ def checkout(skus):
 
     except InvalidInputException:
         return -1
+
