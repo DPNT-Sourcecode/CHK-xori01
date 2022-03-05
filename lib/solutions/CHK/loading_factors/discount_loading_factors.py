@@ -96,10 +96,9 @@ def product_loading_factor_multiple_discount(skus, product_list, product, produc
     return price, skus
 
 def group_discount_loading_factor(skus, product_list, product, product_name, rules):
-
+    matched_list = [characters in ['A'] for characters in string]
     if skus not in ['S','T','X','Y','Z']:
-        product_price = product[product_name]
-        return product_price, skus
+        return 0, skus
 
     breakpoint()
 
@@ -190,6 +189,7 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
     return final_price
+
 
 
 
