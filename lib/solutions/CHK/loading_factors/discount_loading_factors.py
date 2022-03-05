@@ -245,17 +245,15 @@ def group_discount_loading_factor(skus: str, product_list: Dict[str, object], pr
 
     for item in [characters for characters in skus if characters in group_discount_list]:
         group_match_count = skus.count(item)
-        breakpoint()
-        try:
-            for group in groups:
-            groups[item]
-        except KeyError:
+        in_groups = [group['key'] for group in groups]
+        if not item in in_groups:
             product_count += group_match_count
-            
         if group_match_count > 0:
             product_price = product[item]
             tmp = { "key": item, 'value': product_price }
             groups.append(tmp)
+
+    breakpoint()
 
     sort_in_customer_favour = sorted(groups, key=lambda item: item['value'], reverse=True)
     groups = [item['key'] for item in sort_in_customer_favour]
@@ -378,6 +376,7 @@ def apply_price_loading_factors(skus: str, product_discount_list: Dict[str, obje
             final_price += product_price * product_quantity
 
     return final_price
+
 
 
 
