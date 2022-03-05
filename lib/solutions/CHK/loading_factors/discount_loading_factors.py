@@ -133,6 +133,7 @@ def group_discount_loading_factor(skus, product_list, product, product_name, rul
     divisible = len(group_skus[0:3]) / 3
     breakpoint()
     while divisible.is_integer():
+        breakpoint()
         if len(group_skus) < 3:
             break
         group_skus = group_skus[int(3 * divisible):]
@@ -188,4 +189,6 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             product_price = products[item]
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
+    breakpoint()
     return final_price
+
