@@ -78,7 +78,7 @@ DISCOUNT_LIST = {
     "K": {
          "2": {
             "count": 0,
-            "discount": 10,
+            "discount": 20,
             "discount_threshold": 2,
         },
     },
@@ -139,4 +139,5 @@ DISCOUNT_LIST = {
         }
     }
 }
+
 

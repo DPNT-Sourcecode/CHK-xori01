@@ -135,7 +135,7 @@ def test_h_discounts(skus, expected):
 
 @pytest.mark.parametrize("skus,expected", [
     ('K', PRODUCT_STOCK_PRICES['K']),
-    ('K' * 2, (PRODUCT_STOCK_PRICES['K'] * 2) - 10),
+    ('K' * 2, (PRODUCT_STOCK_PRICES['K'] * 2) - 20),
     # ('K' * 3, 150 + 80),
     # ('K' * 4, 300),
     # ('K' * 5, 300 + 80),
@@ -218,7 +218,7 @@ def test_v_discounts(skus, expected):
     ('V' * 3, 130),
     ('V' * 4, 130 + 50),
 ])
-def test_v_discounts(skus, expected):
+def test_group_discounts(skus, expected):
     assert checkout_solution.checkout(skus) == expected
 
 
@@ -228,6 +228,7 @@ def test_invalid_input_responds_as_expected():
 
     skus = 'AzB'
     assert checkout_solution.checkout(skus) == -1
+
 
 
 
