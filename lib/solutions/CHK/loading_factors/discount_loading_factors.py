@@ -95,8 +95,14 @@ def product_loading_factor_multiple_discount(skus, product_list, product, produc
 
     return price, skus
 
-def group_discount_loading_factor(kus, product_list, product, product_name, rules):
-    
+def group_discount_loading_factor(skus, product_list, product, product_name, rules):
+    number_of_products = skus.count(product_name)
+    product_price = product[product_name]
+    product_discount_data_object = product_list[product_name][rules[0]]
+
+    group_discount_list = product_discount_data_object['discount_group']
+
+    breakpoint()
 
 def get_loading_factor(product_name):
     discount_loading_factors = OrderedDict([
@@ -131,4 +137,5 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
     return final_price
+
 
