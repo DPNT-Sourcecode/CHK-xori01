@@ -82,6 +82,36 @@ DISCOUNT_LIST = {
             "discount_threshold": 2,
         },
     },
+    'N': {
+         "3": {
+            "count": 0,
+            "discount": 0,
+            "discount_threshold": 3,
+            "cross_product_name": "M",
+        }
+    },
+    'P': {
+         "5": {
+            "count": 0,
+            "discount": 200,
+            "discount_threshold": 5,
+        }
+    },
+    'Q': {
+         "3": {
+            "count": 0,
+            "discount": 80,
+            "discount_threshold": 3,
+        }
+    },
+    'R': {
+         "3": {
+            "count": 0,
+            "discount": 0,
+            "discount_threshold": 3,
+            "cross_product_name": "Q",
+        }
+    },
 }
 
 
