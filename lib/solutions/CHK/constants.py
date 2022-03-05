@@ -100,7 +100,7 @@ DISCOUNT_LIST = {
     'Q': {
          "3": {
             "count": 0,
-            "discount": 80,
+            "discount": 10,
             "discount_threshold": 3,
         }
     },
@@ -133,6 +133,7 @@ DISCOUNT_LIST = {
         },
     },
 }
+
 
 
 
