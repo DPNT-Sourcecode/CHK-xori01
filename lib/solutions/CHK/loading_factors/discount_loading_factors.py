@@ -210,6 +210,7 @@ def product_multi_deal_loading_factor(skus, product_list, product, product_name,
 
     while number_of_products > 0:
         prioritise_first_discount = number_of_products % discount_threshold
+        breakpoint()
         
         if prioritise_first_discount == 0:
             product_discount_data_object['count'] += 1
@@ -244,7 +245,7 @@ def get_loading_factor(product_name):
         ('E', product_e_pricing_factor),
         ('F', product_f_pricing_factor),
         ('H', product_h_pricing_factor),
-        ('K', product_loading_factor_one_discount),
+        ('K', product_multi_deal_loading_factor),
         
     ])
 
@@ -256,6 +257,7 @@ def apply_price_loading_factors(skus, product_discount_list, products):
     for item in PRODUCT_STOCK_PRICES.keys():
         try:
             discount_loading_factor = get_loading_factor(item)
+            rules = product_discount_list[item].keys()
             for rule in product_discount_list[item].keys():
                 if item in ['K', 'A']:
                     price, updated_skus = discount_loading_factor(skus, product_discount_list, products, item, rule)
@@ -269,3 +271,4 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
     return final_price
+
