@@ -141,8 +141,8 @@ def test_h_discounts(skus, expected):
     ('K' * 6, 450),
     ('K' * 7, 450 + 80),
     ('K' * 8, 600),
-    # ('K' * 2 + 'AA' + 'B', 150 + 100 + 30),
-    # ('K' * 4 + 'AAA' + 'BB', 300 + 130 + 45),
+    ('K' * 2 + 'AA' + 'B', 150 + 100 + 30),
+    ('K' * 4 + 'AAA' + 'BB', 300 + 130 + 45),
 ])
 def test_k_discounts(skus, expected):
     assert checkout_solution.checkout(skus) == expected
@@ -154,6 +154,7 @@ def test_invalid_input_responds_as_expected():
 
     skus = 'AzB'
     assert checkout_solution.checkout(skus) == -1
+
 
 
 
