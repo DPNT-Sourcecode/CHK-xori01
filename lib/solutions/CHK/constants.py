@@ -62,15 +62,15 @@ DISCOUNT_LIST = {
         }
     },
     "H": {
-        "5": {
-            "count": 0,
-            "discount": 5,
-            "discount_threshold": 5,
-        },
         "10": {
             "count": 0,
             "discount": 20,
             "discount_threshold": 10,
+        },
+        "5": {
+            "count": 0,
+            "discount": 5,
+            "discount_threshold": 5,
         },
     },
     "K": {
@@ -81,3 +81,4 @@ DISCOUNT_LIST = {
         },
     },
 }
+

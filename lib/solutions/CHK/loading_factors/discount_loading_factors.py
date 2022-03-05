@@ -70,10 +70,10 @@ def product_loading_factor_multiple_discount(skus, product_list, product, produc
         prioritise_first_rule = number_of_products % discount_threshold_a
         
         if prioritise_first_rule == 0:
-            product_list['A']['5']['count'] += 1
+            product_discount_data_object_a['count'] += 1
             number_of_products -= discount_threshold_a
         elif number_of_products > 0 and prioritise_first_rule == discount_threshold_b:
-            product_list['A']['3']['count'] += 1
+            product_discount_data_object_b['count'] += 1
             number_of_products -= discount_threshold_b
         else:
             number_of_products -= 1
@@ -122,4 +122,5 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
     return final_price
+
 
