@@ -106,7 +106,7 @@ def group_discount_loading_factor(skus, product_list, product, product_name, rul
     product_count = 0
 
     for group in group_discount_list:
-        product_count += group.count(skus)
+        product_count += skus.count(group)
     breakpoint()
     while product_count > 0:
         if product_count > 0 and product_count % discount_threshold == 0:
@@ -138,7 +138,8 @@ def get_loading_factor(product_name):
         ('R', cross_product_loading_factor),
         ('U', cross_product_loading_factor),
         ('V', product_loading_factor_multiple_discount),
-        ('S', group_discount_loading_factor)    
+        ('S', group_discount_loading_factor),    
+        ('T', group_discount_loading_factor),    
     ])
 
     return discount_loading_factors[product_name]
@@ -158,9 +159,3 @@ def apply_price_loading_factors(skus, product_discount_list, products):
             product_quantity = skus.count(item)
             final_price += product_price * product_quantity
     return final_price
-
-
-
-
-
-

@@ -135,13 +135,17 @@ DISCOUNT_LIST = {
     'S': {
         '3': {
             "count": 0,
-            "discount": 5,
+            "discount": 15,
+            "discount_threshold": 3,
+            "discount_group": ['S','T','X','Y','Z']
+        }
+    },
+    'T': {
+        '3': {
+            "count": 0,
+            "discount": 15,
             "discount_threshold": 3,
             "discount_group": ['S','T','X','Y','Z']
         }
     }
 }
-
-
-
-
