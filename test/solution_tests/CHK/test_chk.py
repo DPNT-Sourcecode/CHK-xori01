@@ -2,9 +2,9 @@ import pytest
 
 from solutions.CHK import checkout_solution, InvalidInputException
 
-# def test_checkout_solution_sums_without_discount():
-#     skus = 'A'
-#     assert checkout_solution.checkout(skus) == 50
+def test_checkout_solution_sums_without_discount():
+    skus = 'A'
+    assert checkout_solution.checkout(skus) == 50
 
 def test_checkout_solution_sums_with_discounts():
     skus = 'AA'
@@ -205,7 +205,9 @@ def test_u_discounts(skus, expected):
 
 @pytest.mark.parametrize("skus,expected", [
     ('V', 50),
-    ('V' * 2, 80),
+    ('V' * 2, 90),
+    ('V' * 3, 130),
+    ('V' * 4, 130 + 50),
 ])
 def test_v_discounts(skus, expected):
     assert checkout_solution.checkout(skus) == expected
@@ -216,6 +218,7 @@ def test_invalid_input_responds_as_expected():
 
     skus = 'AzB'
     assert checkout_solution.checkout(skus) == -1
+
 
 
 
