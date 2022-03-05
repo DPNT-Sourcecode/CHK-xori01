@@ -373,11 +373,3 @@ def apply_price_loading_factors(skus: str, product_discount_list: Dict[str, obje
             final_price += product_price * product_quantity
 
     return final_price
-
-
-
-
-
-
-
-

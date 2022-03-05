@@ -237,12 +237,12 @@ def test_all_products():
     skus = 'ABCDEFGHIJKLMNOPQRUVWYZ'
     assert checkout_solution.checkout(skus) == 796
 
-    skus_list = [item for item in PRODUCT_STOCK_PRICES.keys()]
-    skus = "".join(skus_list)
-    assert checkout_solution.checkout(skus) == 796 + 45
+    # skus_list = [item for item in PRODUCT_STOCK_PRICES.keys()]
+    # skus = "".join(skus_list)
+    # assert checkout_solution.checkout(skus) == 796 + 45
     
-    # skus = 'ABCDEFGHIJKLMNOPQRSTUVW'
-    # assert checkout_solution.checkout(skus) == 795
+    skus = 'ABCDEFGHIJKLMNOPQRSTUVW'
+    assert checkout_solution.checkout(skus) == 795
 
 
 def test_invalid_input_responds_as_expected():
@@ -251,9 +251,6 @@ def test_invalid_input_responds_as_expected():
 
     skus = 'AzB'
     assert checkout_solution.checkout(skus) == -1
-
-
-
 
 
 
